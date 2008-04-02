@@ -28,4 +28,4 @@ None.
 == Screenshots ==
 
 1. The added ID column
-2. Admin Options Page 
+2. Admin Options Page
