@@ -4,7 +4,7 @@ Donate link: http://www.schloebe.de/
 Tags: reveal, id, wp-admin, hidden
 Requires at least: 2.5
 Tested up to: 2.5
-Stable tag: 0.7
+Stable tag: 0.7.1
 
 What this plugin does is to reveal most removed entry IDs on admin pages, showing the entry IDs, as it was in versions prior to 2.5
 

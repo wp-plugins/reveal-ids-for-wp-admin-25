@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Reveal IDs for WP Admin 2.5
-Version: 0.7
+Version: 0.7.1
 Plugin URI: http://www.schloebe.de/wordpress/reveal-ids-for-wp-admin-25-plugin/
 Description: Reveals hidden IDs in Admin interface that have been removed with WordPress 2.5 (formerly known as Entry IDs in Manage Posts/Pages View for WP 2.5).
 Author: Oliver Schl&ouml;be
@@ -83,8 +83,8 @@ add_filter('manage_link_columns', 'ridwpa_column_link_id_25', 5, 2);
 /* ********* Category IDs start ********* */
 function ridwpa_column_cat_id_25( $cat_row ) {
 	if ( get_option("ridwpa_cat_ids_enable") && ridwpa_get_user_data(user_level) >= get_option("ridwpa_cat_ids_role") ) {
-	global $category, $cat_ID;
-	$category = get_category( $cat_ID );
+	#global $category, $cat_ID;
+	#$category = get_category( $cat_ID );
 	$wp_version = (!isset($wp_version)) ? get_bloginfo('version') : $wp_version;
 	
 	if ( $wp_version >= '2.5' && basename($_SERVER['SCRIPT_FILENAME']) == 'categories.php' ) {
@@ -324,7 +324,7 @@ function enable_options(area, status) {
 			
 			<table class="form-table <?php echo (!get_option('ridwpa_cat_ids_enable')) ? 'ridwpa_table_disabled' : ''; ?>">
  			<tr>
- 				<th scope="row" valign="top"><?php _e('Show Category IDs', 'reveal-ids-for-wp-admin-25'); ?></th>
+ 				<th scope="row" valign="top"><?php _e('Show Category IDs<br /><span style="color:#ff0000;font-weight:200;">Alpha (Use at your own risk!)</span>', 'reveal-ids-for-wp-admin-25'); ?></th>
  				<td>
  					<label for="ridwpa_cat_ids_enable">
 					<input name="ridwpa_cat_ids_enable" id="ridwpa_cat_ids_enable" value="1" onchange="enable_options('cat_ids', this.checked)" value="1" type="checkbox" <?php echo ( get_option('ridwpa_cat_ids_enable')=='1' ) ? ' checked="checked"' : '' ?> /> <?php _e('Reveal IDs for the category management', 'reveal-ids-for-wp-admin-25'); ?></label>
