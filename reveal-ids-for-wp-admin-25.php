@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Reveal IDs for WP Admin 2.5
-Version: 0.7.1
+Version: 0.7.2
 Plugin URI: http://www.schloebe.de/wordpress/reveal-ids-for-wp-admin-25-plugin/
 Description: Reveals hidden IDs in Admin interface that have been removed with WordPress 2.5 (formerly known as Entry IDs in Manage Posts/Pages View for WP 2.5).
 Author: Oliver Schl&ouml;be
@@ -81,7 +81,7 @@ add_filter('manage_link_columns', 'ridwpa_column_link_id_25', 5, 2);
 /* ********* Link IDs end ********* */
 
 /* ********* Category IDs start ********* */
-function ridwpa_column_cat_id_25( $cat_row ) {
+/*function ridwpa_column_cat_id_25( $cat_row ) {
 	if ( get_option("ridwpa_cat_ids_enable") && ridwpa_get_user_data(user_level) >= get_option("ridwpa_cat_ids_role") ) {
 	#global $category, $cat_ID;
 	#$category = get_category( $cat_ID );
@@ -103,9 +103,70 @@ function ridwpa_column_cat_id_25( $cat_row ) {
     }
     }
     return $cat_row;
+}*/
+function ridwpa_column_cat_id_25( $output ) {
+	if ( get_option("ridwpa_cat_ids_enable") && ridwpa_get_user_data(user_level) >= get_option("ridwpa_cat_ids_role") ) {
+	$wp_version = (!isset($wp_version)) ? get_bloginfo('version') : $wp_version;
+	
+	if ( $wp_version >= '2.5' && basename($_SERVER['SCRIPT_FILENAME']) == 'categories.php' ) {
+		$name_override = false;
+ 		global $class;
+ 		$parent = 0; $level = 0;
+ 		ob_start();
+
+		$args = array('hide_empty' => 0);
+		if ( !empty($_GET['s']) ) {
+			$args['search'] = $_GET['s'];
+		}
+		
+		$categories = get_categories( $args );
+		$children = _get_term_hierarchy('category');
+
+		if ( $categories ) {
+			foreach ($categories as $category) {
+				$category->cat_name = wp_specialchars($category->cat_name);
+				$pad = str_repeat('&#8212; ', $level);
+				$parent = 0; $level = 0;
+				$name = ( $name_override ? $name_override : $pad . ' ' . $category->name );
+				if ( current_user_can( 'manage_categories' ) ) {
+					$edit = "<a class='row-title' href='categories.php?action=edit&amp;cat_ID=$category->term_id' title='" . attribute_escape(sprintf(__('Edit "%s"'), $category->name)) . "'>$name</a>";
+				} else {
+					$edit = $name;
+				}
+				$class = " class='alternate'" == $class ? '' : " class='alternate'";
+				
+				$category->count = number_format_i18n( $category->count );
+				$posts_count = ( $category->count > 0 ) ? "<a href='edit.php?cat=$category->term_id'>$category->count</a>" : $category->count;
+				echo "<tr id='cat-$category->term_id'$class>
+			 			<th scope='row' class='check-column'>";
+			 	if ( absint(get_option( 'default_category' ) ) != $category->term_id ) {
+					echo "<input type='checkbox' name='delete[]' value='$category->term_id' /></th>";
+				} else {
+					echo "&nbsp;";
+				}
+				echo "<td>$edit (ID $category->cat_ID)</td>
+						<td>$category->category_description</td>
+						<td class='num'>$posts_count</td>
+						</tr>";
+				if ( $category->parent == $parent ) {
+					if ( isset($children[$category->term_id]) ) {
+						$level = $level +1;
+					}
+				}
+			}
+		} else {
+			echo '<tr><td colspan="4" style="text-align: center;">' . __('No categories found.') . '</td></tr>';
+		}
+
+		$output = ob_get_contents();
+		ob_end_clean();
+	
+    }
+	return $output;
+    }
 }
 
-add_action('cat_rows', 'ridwpa_column_cat_id_25', 5, 2);
+add_action('cat_rows', 'ridwpa_column_cat_id_25', 5, 1);
 /* ********* Category IDs end ********* */
 
 /* ********* Media IDs start ********* */
