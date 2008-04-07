@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Reveal IDs for WP Admin 2.5
-Version: 0.7.2
+Version: 0.7.3
 Plugin URI: http://www.schloebe.de/wordpress/reveal-ids-for-wp-admin-25-plugin/
 Description: Reveals hidden IDs in Admin interface that have been removed with WordPress 2.5 (formerly known as Entry IDs in Manage Posts/Pages View for WP 2.5).
 Author: Oliver Schl&ouml;be
@@ -19,7 +19,7 @@ function ridwpa_column_pages_id_25($defaults) {
     $wp_version = (!isset($wp_version)) ? get_bloginfo('version') : $wp_version;
 
     if ( $wp_version >= '2.5' ) {
-    	if ( get_option("ridwpa_page_ids_enable") && ridwpa_get_user_data(user_level) >= get_option("ridwpa_page_ids_role") ) {
+    	if ( get_option("ridwpa_page_ids_enable") && ( ridwpa_get_user_data(ID) == '1' || ridwpa_get_user_data(user_level) >= get_option("ridwpa_page_ids_role") ) ) { // TODO: Use capabilities
         	$defaults['ridwpa_page_id_25'] = __('ID');
         }
         return $defaults;
@@ -41,7 +41,7 @@ function ridwpa_column_post_id_25( $defaults ) {
 	$wp_version = (!isset($wp_version)) ? get_bloginfo('version') : $wp_version;
 	
 	if ( $wp_version >= '2.5' ) {
-		if ( get_option("ridwpa_post_ids_enable") && ridwpa_get_user_data(user_level) >= get_option("ridwpa_post_ids_role") ) {
+		if ( get_option("ridwpa_post_ids_enable") && ( ridwpa_get_user_data(ID) == '1' || ridwpa_get_user_data(user_level) >= get_option("ridwpa_post_ids_role") ) ) { // TODO: Use capabilities
     		$defaults['ridwpa_post_id_25'] = __('ID');
     	}
     	return $defaults;
@@ -63,7 +63,7 @@ function ridwpa_column_link_id_25( $defaults ) {
 	$wp_version = (!isset($wp_version)) ? get_bloginfo('version') : $wp_version;
 	
 	if ( $wp_version >= '2.5' ) {
-		if ( get_option("ridwpa_link_ids_enable") && ridwpa_get_user_data(user_level) >= get_option("ridwpa_link_ids_role") ) {
+		if ( get_option("ridwpa_link_ids_enable") && ( ridwpa_get_user_data(ID) == '1' || ridwpa_get_user_data(user_level) >= get_option("ridwpa_link_ids_role") ) ) { // TODO: Use capabilities
  			$defaults['ridwpa_link_id_25'] = '<th>' . __('ID') . '</th>';
  		}
    		return $defaults;
@@ -81,31 +81,8 @@ add_filter('manage_link_columns', 'ridwpa_column_link_id_25', 5, 2);
 /* ********* Link IDs end ********* */
 
 /* ********* Category IDs start ********* */
-/*function ridwpa_column_cat_id_25( $cat_row ) {
-	if ( get_option("ridwpa_cat_ids_enable") && ridwpa_get_user_data(user_level) >= get_option("ridwpa_cat_ids_role") ) {
-	#global $category, $cat_ID;
-	#$category = get_category( $cat_ID );
-	$wp_version = (!isset($wp_version)) ? get_bloginfo('version') : $wp_version;
-	
-	if ( $wp_version >= '2.5' && basename($_SERVER['SCRIPT_FILENAME']) == 'categories.php' ) {
- 		$cat_row .= '<thead>';
- 		$cat_row .= '<tr><th scope="col" class="check-column"></th><th scope="col" colspan="2">' . __('Name') . '</th><th scope="col" class="num">' . __('ID') . '</th></tr>';
- 		$cat_row .= '</thead>';
- 		
- 		$args = array('hide_empty' => 0);
-		if ( !empty($_GET['s']) )
-			$args['search'] = $_GET['s'];
-		$categories = get_categories( $args );
-		
-		foreach ( $categories as $category ) {
-			$cat_row .= '<tr><td></td><td scope="col" colspan="2">' . $category->name . '</td><td scope="col" class="num">' . $category->term_id . '</td></tr>';
-		}
-    }
-    }
-    return $cat_row;
-}*/
 function ridwpa_column_cat_id_25( $output ) {
-	if ( get_option("ridwpa_cat_ids_enable") && ridwpa_get_user_data(user_level) >= get_option("ridwpa_cat_ids_role") ) {
+	if ( get_option("ridwpa_cat_ids_enable") && ( ridwpa_get_user_data(ID) == '1' || ridwpa_get_user_data(user_level) >= get_option("ridwpa_cat_ids_role") ) ) { // TODO: Use capabilities
 	$wp_version = (!isset($wp_version)) ? get_bloginfo('version') : $wp_version;
 	
 	if ( $wp_version >= '2.5' && basename($_SERVER['SCRIPT_FILENAME']) == 'categories.php' ) {
@@ -174,7 +151,7 @@ function ridwpa_column_media_id_25( $defaults ) {
 	$wp_version = (!isset($wp_version)) ? get_bloginfo('version') : $wp_version;
 	
 	if ( $wp_version >= '2.5' ) {
-		if ( get_option("ridwpa_media_ids_enable") && ridwpa_get_user_data(user_level) >= get_option("ridwpa_media_ids_role") ) {
+		if ( get_option("ridwpa_media_ids_enable") && ( ridwpa_get_user_data(ID) == '1' || ridwpa_get_user_data(user_level) >= get_option("ridwpa_media_ids_role") ) ) { // TODO: Use capabilities
     		$defaults['ridwpa_media_id_25'] = __('ID');
     	}
     	return $defaults;
