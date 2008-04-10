@@ -17,7 +17,7 @@ What this plugin does is to reveal most removed entry IDs on admin pages, showin
 Features:
 
 * Following IDs can be revealed: Posts, Pages, Category, Links, Media
-* Each ID can be de-/activated seperately, plus you can ''allow/permit user roles to see the IDs''
+* Each ID can be de-/activated seperately, plus you can **allow/permit user roles to see the IDs**
 
 == Frequently Asked Questions ==
 
@@ -33,4 +33,4 @@ None.
 == Screenshots ==
 
 1. The added ID column
-2. Admin Options Page
+1. Admin Options Page
