@@ -1,25 +1,58 @@
 <?php
 /*
 Plugin Name: Reveal IDs for WP Admin 2.5
-Version: 0.7.4
+Version: 0.7.5
 Plugin URI: http://www.schloebe.de/wordpress/reveal-ids-for-wp-admin-25-plugin/
-Description: Reveals hidden IDs in Admin interface that have been removed with WordPress 2.5 (formerly known as Entry IDs in Manage Posts/Pages View for WP 2.5).
+Description: Reveals hidden IDs in Admin interface that have been removed with WordPress 2.5 (formerly known as Entry IDs in Manage Posts/Pages View for WP 2.5). See <a href="options-general.php?page=reveal-ids-for-wp-admin-25/reveal-ids-for-wp-admin-25.php">Options Page</a> for options and information.
 Author: Oliver Schl&ouml;be
 Author URI: http://www.schloebe.de/
 */
 
-function ridwpa_get_user_data($uservar) {
-	global $userdata, $user_level;
-	get_currentuserinfo();
-	return $userdata->$uservar;
+define("RIDWPA_VERSION", "0.7.5");
+
+function ridwpa_get_role( $capability ) {
+	$check_order = array("subscriber", "contributor", "author", "editor", "administrator");
+
+	$args = array_slice(func_get_args(), 1);
+	$args = array_merge(array($capability), $args);
+
+	foreach ($check_order as $role) {
+		$check_role = get_role($role);
+		
+		if ( empty($check_role) )
+			return false;
+			
+		if (call_user_func_array(array(&$check_role, 'has_cap'), $args))
+			return $role;
+	}
+	return false;
+}
+
+function ridwpa_set_capability( $lowest_role, $capability ) {
+	$check_order = array("subscriber", "contributor", "author", "editor", "administrator");
+
+	$add_capability = false;
+	
+	foreach ($check_order as $role) {
+		if ($lowest_role == $role)
+			$add_capability = true;
+			
+		$the_role = get_role($role);
+		
+		if ( empty($the_role) )
+			continue;
+			
+		$add_capability ? $the_role->add_cap($capability) : $the_role->remove_cap($capability) ;
+	}
+	
 }
 
 /* ********* Pages IDs start ********* */
 function ridwpa_column_pages_id_25($defaults) {
     $wp_version = (!isset($wp_version)) ? get_bloginfo('version') : $wp_version;
 
-    if ( $wp_version >= '2.5' ) {
-    	if ( get_option("ridwpa_page_ids_enable") && ( ridwpa_get_user_data(ID) == '1' || ridwpa_get_user_data(user_level) >= get_option("ridwpa_page_ids_role") ) ) { // TODO: Use capabilities
+    if ( version_compare( $wp_version, '2.5', '>=' ) ) {
+    	if ( get_option("ridwpa_page_ids_enable") && current_user_can('Reveal IDs See Page IDs') ) {
         	$defaults['ridwpa_page_id_25'] = __('ID');
         }
         return $defaults;
@@ -40,8 +73,9 @@ add_filter('manage_pages_columns', 'ridwpa_column_pages_id_25', 5, 2);
 function ridwpa_column_post_id_25( $defaults ) {
 	$wp_version = (!isset($wp_version)) ? get_bloginfo('version') : $wp_version;
 	
-	if ( $wp_version >= '2.5' ) {
-		if ( get_option("ridwpa_post_ids_enable") && ( ridwpa_get_user_data(ID) == '1' || ridwpa_get_user_data(user_level) >= get_option("ridwpa_post_ids_role") ) ) { // TODO: Use capabilities
+	if ( version_compare( $wp_version, '2.5', '>=' ) ) {
+		//if ( get_option("ridwpa_post_ids_enable") && ( ridwpa_get_user_data(ID) == '1' || ridwpa_get_user_data(user_level) >= get_option("ridwpa_post_ids_role") ) ) { // TODO: Use capabilities
+		if ( get_option("ridwpa_post_ids_enable") && current_user_can('Reveal IDs See Post IDs') ) {
     		$defaults['ridwpa_post_id_25'] = __('ID');
     	}
     	return $defaults;
@@ -62,8 +96,8 @@ add_filter('manage_posts_columns', 'ridwpa_column_post_id_25', 5, 2);
 function ridwpa_column_link_id_25( $defaults ) {
 	$wp_version = (!isset($wp_version)) ? get_bloginfo('version') : $wp_version;
 	
-	if ( $wp_version >= '2.5' ) {
-		if ( get_option("ridwpa_link_ids_enable") && ( ridwpa_get_user_data(ID) == '1' || ridwpa_get_user_data(user_level) >= get_option("ridwpa_link_ids_role") ) ) { // TODO: Use capabilities
+	if ( version_compare( $wp_version, '2.5', '>=' ) ) {
+		if ( get_option("ridwpa_link_ids_enable") && current_user_can('Reveal IDs See Link IDs') ) {
  			$defaults['ridwpa_link_id_25'] = '<th>' . __('ID') . '</th>';
  		}
    		return $defaults;
@@ -82,10 +116,10 @@ add_filter('manage_link_columns', 'ridwpa_column_link_id_25', 5, 2);
 
 /* ********* Category IDs start ********* */
 function ridwpa_column_cat_id_25( $output ) {
-	if ( get_option("ridwpa_cat_ids_enable") && ( ridwpa_get_user_data(ID) == '1' || ridwpa_get_user_data(user_level) >= get_option("ridwpa_cat_ids_role") ) ) { // TODO: Use capabilities
+	if ( get_option("ridwpa_cat_ids_enable") && current_user_can('Reveal IDs See Category IDs') ) {
 	$wp_version = (!isset($wp_version)) ? get_bloginfo('version') : $wp_version;
 	
-	if ( $wp_version >= '2.5' && basename($_SERVER['SCRIPT_FILENAME']) == 'categories.php' ) {
+	if ( version_compare( $wp_version, '2.5', '>=' ) && basename($_SERVER['SCRIPT_FILENAME']) == 'categories.php' ) {
 		$name_override = false;
  		global $class;
  		$parent = 0; $level = 0;
@@ -150,8 +184,8 @@ add_action('cat_rows', 'ridwpa_column_cat_id_25', 5, 1);
 function ridwpa_column_media_id_25( $defaults ) {
 	$wp_version = (!isset($wp_version)) ? get_bloginfo('version') : $wp_version;
 	
-	if ( $wp_version >= '2.5' ) {
-		if ( get_option("ridwpa_media_ids_enable") && ( ridwpa_get_user_data(ID) == '1' || ridwpa_get_user_data(user_level) >= get_option("ridwpa_media_ids_role") ) ) { // TODO: Use capabilities
+	if ( version_compare( $wp_version, '2.5', '>=' ) ) {
+		if ( get_option("ridwpa_media_ids_enable") && current_user_can('Reveal IDs See Media IDs') ) {
     		$defaults['ridwpa_media_id_25'] = __('ID');
     	}
     	return $defaults;
@@ -188,74 +222,95 @@ function ridwpa_activate() {
 }
 
 function ridwpa_add_optionpages() {
-	
 	add_options_page(__('Reveal IDs Options', 'reveal-ids-for-wp-admin-25'), __('Reveal IDs for WP Admin 2.5', 'reveal-ids-for-wp-admin-25'), 8, __FILE__, 'ridwpa_options_page');
 }
 
 function ridwpa_DefaultSettings () {
-	if( !get_option("ridwpa_post_ids_enable") )
+	if( !get_option("ridwpa_post_ids_enable") ) {
 		add_option("ridwpa_post_ids_enable", "1");
-	if( !get_option("ridwpa_post_ids_role") )
-		add_option("ridwpa_post_ids_role", "0");
-	if( !get_option("ridwpa_page_ids_enable") )
+	}
+	if( !get_option("ridwpa_page_ids_enable") ) {
 		add_option("ridwpa_page_ids_enable", "1");
-	if( !get_option("ridwpa_page_ids_role") )
-		add_option("ridwpa_page_ids_role", "0");
-	if( !get_option("ridwpa_link_ids_enable") )
+	}
+	if( !get_option("ridwpa_link_ids_enable") ) {
 		add_option("ridwpa_link_ids_enable", "1");
-	if( !get_option("ridwpa_link_ids_role") )
-		add_option("ridwpa_link_ids_role", "0");
-	if( !get_option("ridwpa_cat_ids_enable") )
+	}
+	if( !get_option("ridwpa_cat_ids_enable") ) {
 		add_option("ridwpa_cat_ids_enable", "1");
-	if( !get_option("ridwpa_cat_ids_role") )
-		add_option("ridwpa_cat_ids_role", "0");
-	if( !get_option("ridwpa_media_ids_enable") )
+	}
+	if( !get_option("ridwpa_media_ids_enable") ) {
 		add_option("ridwpa_media_ids_enable", "1");
-	if( !get_option("ridwpa_media_ids_role") )
-		add_option("ridwpa_media_ids_role", "0");
+	}
+	if( !get_option("ridwpa_reassigned_075_options") ) {
+		add_option("ridwpa_reassigned_075_options", "0");
+	}
+	if( !get_option("ridwpa_version") ) {
+		add_option("ridwpa_version", RIDWPA_VERSION);
+	}
+	update_option("ridwpa_version", RIDWPA_VERSION);
 }
 
 function ridwpa_options_page() {
 	if (isset($_POST['action']) === true) {
 		update_option("ridwpa_post_ids_enable", (int)$_POST['ridwpa_post_ids_enable']);
-		update_option("ridwpa_post_ids_role", (int)$_POST['ridwpa_post_ids_role']);
 		update_option("ridwpa_page_ids_enable", (int)$_POST['ridwpa_page_ids_enable']);
-		update_option("ridwpa_page_ids_role", (int)$_POST['ridwpa_page_ids_role']);
 		update_option("ridwpa_link_ids_enable", (int)$_POST['ridwpa_link_ids_enable']);
-		update_option("ridwpa_link_ids_role", (int)$_POST['ridwpa_link_ids_role']);
 		update_option("ridwpa_cat_ids_enable", (int)$_POST['ridwpa_cat_ids_enable']);
-		update_option("ridwpa_cat_ids_role", (int)$_POST['ridwpa_cat_ids_role']);
 		update_option("ridwpa_media_ids_enable", (int)$_POST['ridwpa_media_ids_enable']);
-		update_option("ridwpa_media_ids_role", (int)$_POST['ridwpa_media_ids_role']);
+		update_option("ridwpa_reassigned_075_options", (int)'1');
+		ridwpa_set_capability($_POST['ridwpa_post_ids_cap'], "Reveal IDs See Post IDs");
+		ridwpa_set_capability($_POST['ridwpa_page_ids_cap'], "Reveal IDs See Page IDs");
+		ridwpa_set_capability($_POST['ridwpa_link_ids_cap'], "Reveal IDs See Link IDs");
+		ridwpa_set_capability($_POST['ridwpa_cat_ids_cap'], "Reveal IDs See Category IDs");
+		ridwpa_set_capability($_POST['ridwpa_media_ids_cap'], "Reveal IDs See Media IDs");
 
 		$successmessage = __('Settings saved.', 'reveal-ids-for-wp-admin-25');
 
-		echo '<div id="message" class="updated fade">
+		echo '<div id="message0" class="updated fade">
 			<p>
 				<strong>
 					' . $successmessage . '
 				</strong>
 			</p>
 		</div><br />';
+	
+		echo '<script type="text/javascript">
+		function OptionsUpdated() {
+			window.location.href = "' . $_SERVER['REQUEST_URI'] . '";
+		}
+
+		window.setTimeout("OptionsUpdated()", 2000);
+		</script>';
 	}
 		
-		if( function_exists('os_column_page_id_25') ) {
-			$errormessage = __('You still seem to have installed the former (less powerful) plugin release \'Entry IDs in Manage Posts/Pages View for WP 2.5\' (manage-posts-pages-id-25.php). Please deactivate/remove it in order for this plugin to work properly.', 'reveal-ids-for-wp-admin-25');
-			echo '<div id="message" class="error fade">
-			<p>
-				<strong>
-					' . $errormessage . '
-				</strong>
-			</p>
-		</div>';
-		}
+	if( function_exists('os_column_page_id_25') ) {
+		$errormessage = __('You still seem to have installed the former (less powerful) plugin release \'Entry IDs in Manage Posts/Pages View for WP 2.5\' (manage-posts-pages-id-25.php). Please deactivate/remove it in order for this plugin to work properly.', 'reveal-ids-for-wp-admin-25');
+		echo '<div id="message1" class="error fade">
+		<p>
+			<strong>
+				' . $errormessage . '
+			</strong>
+		</p>
+	</div>';
+	}
+		
+	if( get_option('ridwpa_reassigned_075_options') == '0' ) {
+		$upgrade075message = __('You appearently updated from version 0.7.4. There have been some changes in role management behaviour in this plugin. Please re-assign the options to apply the changes and to make this message disappear. ;-)', 'reveal-ids-for-wp-admin-25');
+		echo '<div id="message2" class="error fade">
+		<p>
+			<strong>
+				' . $upgrade075message . '
+			</strong>
+		</p>
+	</div>';
+	}
 ?>
 <style type="text/css">
 table.ridwpa_table_disabled td, table.ridwpa_table_disabled th {
 	background: #EBEBEB;
 }
 </style>
-	
+
 <script type="text/javascript">
 function enable_options(area, status) {
 	var i = 0, name;
@@ -288,12 +343,8 @@ function enable_options(area, status) {
  				<td align="right">
  					<strong><?php _e('What\'s the user role minimum allowed to see the IDs?', 'reveal-ids-for-wp-admin-25'); ?></strong>
 					<br />
-					<select name="ridwpa_post_ids_role" id="ridwpa_post_ids_role" style="width: 90%;" disabled="disabled">
-						<option value="8" <?php if(get_option('ridwpa_post_ids_role') == "8") echo 'selected="selected"'; ?>><?php _e('Administrator', 'reveal-ids-for-wp-admin-25'); ?></option>
-						<option value="5" <?php if(get_option('ridwpa_post_ids_role') == "5") echo 'selected="selected"'; ?>><?php _e('Editor', 'reveal-ids-for-wp-admin-25'); ?></option>
-						<option value="2" <?php if(get_option('ridwpa_post_ids_role') == "2") echo 'selected="selected"'; ?>><?php _e('Author', 'reveal-ids-for-wp-admin-25'); ?></option>
-						<option value="1" <?php if(get_option('ridwpa_post_ids_role') == "1") echo 'selected="selected"'; ?>><?php _e('Contributor', 'reveal-ids-for-wp-admin-25'); ?></option>
-						<option value="0" <?php if(get_option('ridwpa_post_ids_role') == "0") echo 'selected="selected"';?>><?php _e('Subscriber', 'reveal-ids-for-wp-admin-25'); ?></option>
+					<select name="ridwpa_post_ids_cap" id="ridwpa_post_ids_cap" style="width:325px;" disabled="disabled">
+						<?php wp_dropdown_roles( ridwpa_get_role('Reveal IDs See Post IDs') ); ?>
 					</select>
  				</td>
  			</tr>
@@ -316,12 +367,8 @@ function enable_options(area, status) {
  				<td align="right">
  					<strong><?php _e('What\'s the user role minimum allowed to see the IDs?', 'reveal-ids-for-wp-admin-25'); ?></strong>
 					<br />
-					<select name="ridwpa_page_ids_role" id="ridwpa_page_ids_role" style="width: 90%;" disabled="disabled">
-						<option value="8" <?php if(get_option('ridwpa_page_ids_role') == "8") echo 'selected="selected"'; ?>><?php _e('Administrator', 'reveal-ids-for-wp-admin-25'); ?></option>
-						<option value="5" <?php if(get_option('ridwpa_page_ids_role') == "5") echo 'selected="selected"'; ?>><?php _e('Editor', 'reveal-ids-for-wp-admin-25'); ?></option>
-						<option value="2" <?php if(get_option('ridwpa_page_ids_role') == "2") echo 'selected="selected"'; ?>><?php _e('Author', 'reveal-ids-for-wp-admin-25'); ?></option>
-						<option value="1" <?php if(get_option('ridwpa_page_ids_role') == "1") echo 'selected="selected"'; ?>><?php _e('Contributor', 'reveal-ids-for-wp-admin-25'); ?></option>
-						<option value="0" <?php if(get_option('ridwpa_page_ids_role') == "0") echo 'selected="selected"';?>><?php _e('Subscriber', 'reveal-ids-for-wp-admin-25'); ?></option>
+					<select name="ridwpa_page_ids_cap" id="ridwpa_page_ids_cap" style="width:325px;" disabled="disabled">
+						<?php wp_dropdown_roles( ridwpa_get_role('Reveal IDs See Page IDs') ); ?>
 					</select>
  				</td>
  			</tr>
@@ -344,12 +391,8 @@ function enable_options(area, status) {
  				<td align="right">
  					<strong><?php _e('What\'s the user role minimum allowed to see the IDs?', 'reveal-ids-for-wp-admin-25'); ?></strong>
 					<br />
-					<select name="ridwpa_link_ids_role" id="ridwpa_link_ids_role" style="width: 90%;" disabled="disabled">
-						<option value="8" <?php if(get_option('ridwpa_link_ids_role') == "8") echo 'selected="selected"'; ?>><?php _e('Administrator', 'reveal-ids-for-wp-admin-25'); ?></option>
-						<option value="5" <?php if(get_option('ridwpa_link_ids_role') == "5") echo 'selected="selected"'; ?>><?php _e('Editor', 'reveal-ids-for-wp-admin-25'); ?></option>
-						<option value="2" <?php if(get_option('ridwpa_link_ids_role') == "2") echo 'selected="selected"'; ?>><?php _e('Author', 'reveal-ids-for-wp-admin-25'); ?></option>
-						<option value="1" <?php if(get_option('ridwpa_link_ids_role') == "1") echo 'selected="selected"'; ?>><?php _e('Contributor', 'reveal-ids-for-wp-admin-25'); ?></option>
-						<option value="0" <?php if(get_option('ridwpa_link_ids_role') == "0") echo 'selected="selected"';?>><?php _e('Subscriber', 'reveal-ids-for-wp-admin-25'); ?></option>
+					<select name="ridwpa_link_ids_cap" id="ridwpa_link_ids_cap" style="width:325px;" disabled="disabled">
+						<?php wp_dropdown_roles( ridwpa_get_role('Reveal IDs See Link IDs') ); ?>
 					</select>
  				</td>
  			</tr>
@@ -367,17 +410,13 @@ function enable_options(area, status) {
  					<label for="ridwpa_cat_ids_enable">
 					<input name="ridwpa_cat_ids_enable" id="ridwpa_cat_ids_enable" value="1" onchange="enable_options('cat_ids', this.checked)" value="1" type="checkbox" <?php echo ( get_option('ridwpa_cat_ids_enable')=='1' ) ? ' checked="checked"' : '' ?> /> <?php _e('Reveal IDs for the category management', 'reveal-ids-for-wp-admin-25'); ?></label>
 					<br />
-					<small><em><?php _e('(This will add a new table below the category management displaying the IDs)', 'reveal-ids-for-wp-admin-25'); ?></em></small>
+					<small><em><?php _e('(This will add the ID after the category title)', 'reveal-ids-for-wp-admin-25'); ?></em></small>
  				</td>
  				<td align="right">
  					<strong><?php _e('What\'s the user role minimum allowed to see the IDs?', 'reveal-ids-for-wp-admin-25'); ?></strong>
 					<br />
-					<select name="ridwpa_cat_ids_role" id="ridwpa_cat_ids_role" style="width: 90%;" disabled="disabled">
-						<option value="8" <?php if(get_option('ridwpa_cat_ids_role') == "8") echo 'selected="selected"'; ?>><?php _e('Administrator', 'reveal-ids-for-wp-admin-25'); ?></option>
-						<option value="5" <?php if(get_option('ridwpa_cat_ids_role') == "5") echo 'selected="selected"'; ?>><?php _e('Editor', 'reveal-ids-for-wp-admin-25'); ?></option>
-						<option value="2" <?php if(get_option('ridwpa_cat_ids_role') == "2") echo 'selected="selected"'; ?>><?php _e('Author', 'reveal-ids-for-wp-admin-25'); ?></option>
-						<option value="1" <?php if(get_option('ridwpa_cat_ids_role') == "1") echo 'selected="selected"'; ?>><?php _e('Contributor', 'reveal-ids-for-wp-admin-25'); ?></option>
-						<option value="0" <?php if(get_option('ridwpa_cat_ids_role') == "0") echo 'selected="selected"';?>><?php _e('Subscriber', 'reveal-ids-for-wp-admin-25'); ?></option>
+					<select name="ridwpa_cat_ids_cap" id="ridwpa_cat_ids_cap" style="width:325px;" disabled="disabled">
+						<?php wp_dropdown_roles( ridwpa_get_role('Reveal IDs See Category IDs') ); ?>
 					</select>
  				</td>
  			</tr>
@@ -400,12 +439,8 @@ function enable_options(area, status) {
  				<td align="right">
  					<strong><?php _e('What\'s the user role minimum allowed to see the IDs?', 'reveal-ids-for-wp-admin-25'); ?></strong>
 					<br />
-					<select name="ridwpa_media_ids_role" id="ridwpa_media_ids_role" style="width: 90%;" disabled="disabled">
-						<option value="8" <?php if(get_option('ridwpa_media_ids_role') == "8") echo 'selected="selected"'; ?>><?php _e('Administrator', 'reveal-ids-for-wp-admin-25'); ?></option>
-						<option value="5" <?php if(get_option('ridwpa_media_ids_role') == "5") echo 'selected="selected"'; ?>><?php _e('Editor', 'reveal-ids-for-wp-admin-25'); ?></option>
-						<option value="2" <?php if(get_option('ridwpa_media_ids_role') == "2") echo 'selected="selected"'; ?>><?php _e('Author', 'reveal-ids-for-wp-admin-25'); ?></option>
-						<option value="1" <?php if(get_option('ridwpa_media_ids_role') == "1") echo 'selected="selected"'; ?>><?php _e('Contributor', 'reveal-ids-for-wp-admin-25'); ?></option>
-						<option value="0" <?php if(get_option('ridwpa_media_ids_role') == "0") echo 'selected="selected"';?>><?php _e('Subscriber', 'reveal-ids-for-wp-admin-25'); ?></option>
+					<select name="ridwpa_media_ids_cap" id="ridwpa_media_ids_cap" style="width:325px;" disabled="disabled">
+						<?php wp_dropdown_roles( ridwpa_get_role('Reveal IDs See Media IDs') ); ?>
 					</select>
  				</td>
  			</tr>
@@ -420,7 +455,7 @@ function enable_options(area, status) {
 			</p>
 			</form>
       	<h3>
-        	<?php _e('Help'); ?>
+        	<?php _e('Help', 'reveal-ids-for-wp-admin-25'); ?>
       	</h3>
 		<table class="form-table">
  		<tr>
