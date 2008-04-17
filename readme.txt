@@ -1,6 +1,6 @@
 === Reveal IDs for WP Admin 2.5 ===
 Contributors: Alphawolf
-Donate link: http://www.schloebe.de/
+Donate link: http://www.schloebe.de/donate/
 Tags: reveal, id, wp-admin, hidden
 Requires at least: 2.5
 Tested up to: 2.5
