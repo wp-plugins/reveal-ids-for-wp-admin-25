@@ -1,15 +1,52 @@
 <?php
+/**
+ * The main plugin file
+ *
+ * @package WordPress_Plugins
+ * @subpackage RevealIDsForWPAdmin
+ */
+ 
 /*
 Plugin Name: Reveal IDs for WP Admin
 Version: 0.7.6
 Plugin URI: http://www.schloebe.de/wordpress/reveal-ids-for-wp-admin-25-plugin/
-Description: Reveals hidden IDs in Admin interface that have been removed with WordPress 2.5 (formerly known as Entry IDs in Manage Posts/Pages View for WP 2.5). See <a href="options-general.php?page=reveal-ids-for-wp-admin-25/reveal-ids-for-wp-admin-25.php">Options Page</a> for options and information.
+Description: <strong>WordPress 2.5+ only.</strong> Reveals hidden IDs in Admin interface that have been removed with WordPress 2.5 (formerly known as Entry IDs in Manage Posts/Pages View for WP 2.5). See <a href="options-general.php?page=reveal-ids-for-wp-admin-25/reveal-ids-for-wp-admin-25.php">Options Page</a> for options and information.
 Author: Oliver Schl&ouml;be
 Author URI: http://www.schloebe.de/
+
+
+Copyright 2008 Oliver Schlöbe (email : webmaster@schloebe.de)
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+/**
+ * Define the plugin version
+ */
 define("RIDWPA_VERSION", "0.7.6");
 
+
+/**
+ * Get all the WordPress user roles using for capability stuff
+ *
+ * @since 0.7
+ * @author scripts@schloebe.de
+ *
+ * @param string $capability
+ * @return string
+ */
 function ridwpa_get_role( $capability ) {
 	$check_order = array("subscriber", "contributor", "author", "editor", "administrator");
 
@@ -28,6 +65,17 @@ function ridwpa_get_role( $capability ) {
 	return false;
 }
 
+
+/**
+ * Set the user capabilities using for permission stuff
+ *
+ * @since 0.7
+ * @author scripts@schloebe.de
+ *
+ * @param string $lowest_role
+ * @param string $capability
+ * @return mixed
+ */
 function ridwpa_set_capability( $lowest_role, $capability ) {
 	$check_order = array("subscriber", "contributor", "author", "editor", "administrator");
 
@@ -47,7 +95,15 @@ function ridwpa_set_capability( $lowest_role, $capability ) {
 	
 }
 
-/* ********* Pages IDs start ********* */
+/**
+ * Add a new 'ID' column to the page management view
+ *
+ * @since 0.7
+ * @author scripts@schloebe.de
+ *
+ * @param array
+ * @return array
+ */
 function ridwpa_column_pages_id_25($defaults) {
     $wp_version = (!isset($wp_version)) ? get_bloginfo('version') : $wp_version;
 
@@ -59,6 +115,15 @@ function ridwpa_column_pages_id_25($defaults) {
     }
 }
 
+/**
+ * Adds content to the new 'ID' column to the page management view
+ *
+ * @since 0.7
+ * @author scripts@schloebe.de
+ *
+ * @param string
+ * @param int
+ */
 function ridwpa_custom_column_page_id_25($column_name, $id) {
     if( $column_name == 'ridwpa_page_id_25' ) {
         echo (int) $id;
@@ -67,9 +132,17 @@ function ridwpa_custom_column_page_id_25($column_name, $id) {
 
 add_action('manage_pages_custom_column', 'ridwpa_custom_column_page_id_25', 5, 2);
 add_filter('manage_pages_columns', 'ridwpa_column_pages_id_25', 5, 2);
-/* ********* Pages IDs end ********* */
 
-/* ********* Post IDs start ********* */
+
+/**
+ * Add a new 'ID' column to the post management view
+ *
+ * @since 0.7
+ * @author scripts@schloebe.de
+ *
+ * @param array
+ * @return array
+ */
 function ridwpa_column_post_id_25( $defaults ) {
 	$wp_version = (!isset($wp_version)) ? get_bloginfo('version') : $wp_version;
 	
@@ -81,6 +154,15 @@ function ridwpa_column_post_id_25( $defaults ) {
     }
 }
 
+/**
+ * Adds content to the new 'ID' column in the post management view
+ *
+ * @since 0.7
+ * @author scripts@schloebe.de
+ *
+ * @param string
+ * @param int
+ */
 function ridwpa_custom_column_post_id_25($column_name, $id) {
     if( $column_name == 'ridwpa_post_id_25' ) {
         echo (int) $id;
@@ -89,9 +171,17 @@ function ridwpa_custom_column_post_id_25($column_name, $id) {
 
 add_action('manage_posts_custom_column', 'ridwpa_custom_column_post_id_25', 5, 2);
 add_filter('manage_posts_columns', 'ridwpa_column_post_id_25', 5, 2);
-/* ********* Post IDs end ********* */
 
-/* ********* Link IDs start ********* */
+
+/**
+ * Add a new 'ID' column to the link management view
+ *
+ * @since 0.7
+ * @author scripts@schloebe.de
+ *
+ * @param array
+ * @return array
+ */
 function ridwpa_column_link_id_25( $defaults ) {
 	$wp_version = (!isset($wp_version)) ? get_bloginfo('version') : $wp_version;
 	
@@ -103,6 +193,15 @@ function ridwpa_column_link_id_25( $defaults ) {
     }
 }
 
+/**
+ * Adds content to the new 'ID' column in the link management view
+ *
+ * @since 0.7
+ * @author scripts@schloebe.de
+ *
+ * @param string
+ * @param int
+ */
 function ridwpa_custom_column_link_id_25($column_name, $id) {
     if( $column_name == 'ridwpa_link_id_25' ) {
         echo (int) $id;
@@ -111,9 +210,17 @@ function ridwpa_custom_column_link_id_25($column_name, $id) {
 
 add_action('manage_link_custom_column', 'ridwpa_custom_column_link_id_25', 5, 2);
 add_filter('manage_link_columns', 'ridwpa_column_link_id_25', 5, 2);
-/* ********* Link IDs end ********* */
 
-/* ********* Category IDs start ********* */
+
+/**
+ * Adds the category 'ID' to the category management view
+ *
+ * @since 0.7
+ * @author scripts@schloebe.de
+ *
+ * @param string
+ * @return string
+ */
 function ridwpa_column_cat_id_25( $output ) {
 	if ( get_option("ridwpa_cat_ids_enable") && current_user_can('Reveal IDs See Category IDs') ) {
 	$wp_version = (!isset($wp_version)) ? get_bloginfo('version') : $wp_version;
@@ -177,9 +284,17 @@ function ridwpa_column_cat_id_25( $output ) {
 }
 
 add_action('cat_rows', 'ridwpa_column_cat_id_25', 5, 1);
-/* ********* Category IDs end ********* */
 
-/* ********* Media IDs start ********* */
+
+/**
+ * Adds content to the new 'ID' column to the media management view
+ *
+ * @since 0.7
+ * @author scripts@schloebe.de
+ *
+ * @param array
+ * @return array
+ */
 function ridwpa_column_media_id_25( $defaults ) {
 	$wp_version = (!isset($wp_version)) ? get_bloginfo('version') : $wp_version;
 	
@@ -191,6 +306,15 @@ function ridwpa_column_media_id_25( $defaults ) {
     }
 }
 
+/**
+ * Adds content to the new 'ID' column in the media management view
+ *
+ * @since 0.7
+ * @author scripts@schloebe.de
+ *
+ * @param string
+ * @param int
+ */
 function ridwpa_custom_column_media_id_25($column_name, $id) {
     if( $column_name == 'ridwpa_media_id_25' ) {
         echo (int) $id;
@@ -199,17 +323,47 @@ function ridwpa_custom_column_media_id_25($column_name, $id) {
 
 add_action('manage_media_custom_column', 'ridwpa_custom_column_media_id_25', 5, 2);
 add_filter('manage_media_columns', 'ridwpa_column_media_id_25', 5, 2);
-/* ********* Media IDs end ********* */
 
 
-/* ********* Admin area stuff ********* */
-load_plugin_textdomain('reveal-ids-for-wp-admin-25', PLUGINDIR . '/reveal-ids-for-wp-admin-25');
+/**
+ * Pre-2.6 compatibility
+ */
+if ( !defined('WP_CONTENT_URL') )
+	/**
+ 	* @ignore
+ 	*/
+    define( 'WP_CONTENT_URL', get_option('siteurl') . '/wp-content');
+if ( !defined('WP_CONTENT_DIR') )
+	/**
+ 	* @ignore
+ 	*/
+    define( 'WP_CONTENT_DIR', ABSPATH . 'wp-content' );
+    
+if ( function_exists('load_plugin_textdomain') ) {
+	/**
+	* Load all the l18n data from languages path
+	*/
+	if ( !defined('WP_PLUGIN_DIR') ) {
+		load_plugin_textdomain('reveal-ids-for-wp-admin-25', str_replace( ABSPATH, '', dirname(__FILE__) ));
+	} else {
+		load_plugin_textdomain('reveal-ids-for-wp-admin-25', false, dirname(plugin_basename(__FILE__)));
+	}
+}
 
 add_action('admin_menu', 'ridwpa_add_optionpages');
 add_action('init', 'ridwpa_DefaultSettings');
 
 register_activation_hook( __FILE__, 'ridwpa_activate' );
 
+
+/**
+ * Check for the former plugin version and deactivates it, otherwise set default settings
+ *
+ * @since 0.7
+ * @author scripts@schloebe.de
+ *
+ * @return bool
+ */
 function ridwpa_activate() {
 	if( function_exists('os_column_page_id_25') ) {
 		deactivate_plugins(__FILE__);
@@ -220,10 +374,22 @@ function ridwpa_activate() {
 	}
 }
 
+/**
+ * Adds the plugin's options page
+ *
+ * @since 0.7
+ * @author scripts@schloebe.de
+ */
 function ridwpa_add_optionpages() {
 	add_options_page(__('Reveal IDs Options', 'reveal-ids-for-wp-admin-25'), __('Reveal IDs for WP Admin 2.5', 'reveal-ids-for-wp-admin-25'), 8, __FILE__, 'ridwpa_options_page');
 }
 
+/**
+ * Adds the plugin's default settings
+ *
+ * @since 0.7
+ * @author scripts@schloebe.de
+ */
 function ridwpa_DefaultSettings () {
 	if( !get_option("ridwpa_post_ids_enable") ) {
 		add_option("ridwpa_post_ids_enable", "1");
@@ -249,6 +415,12 @@ function ridwpa_DefaultSettings () {
 	update_option("ridwpa_version", RIDWPA_VERSION);
 }
 
+/**
+ * Adds content to the plugin's options page
+ *
+ * @since 0.7
+ * @author scripts@schloebe.de
+ */
 function ridwpa_options_page() {
 	if (isset($_POST['action']) === true) {
 		update_option("ridwpa_post_ids_enable", (int)$_POST['ridwpa_post_ids_enable']);
