@@ -1,7 +1,7 @@
 === Reveal IDs for WP Admin ===
 Contributors: Alphawolf
 Donate link: http://www.schloebe.de/donate/
-Tags: reveal, id, wp-admin, hidden
+Tags: reveal, id, wp-admin, hidden, category, post, page, media, links, capability
 Requires at least: 2.5
 Tested up to: 2.6+
 Stable tag: trunk
@@ -14,10 +14,16 @@ With WordPress 2.5 being released, the IDs on all admin pages have been removed 
 
 What this plugin does is to reveal most removed entry IDs on admin pages, showing the entry IDs, as it was in versions prior to 2.5
 
-Features:
+**Features:**
 
 * Following IDs can be revealed: Posts, Pages, Category, Links, Media
 * Each ID can be de-/activated seperately, plus you can **allow/permit user roles to see the IDs**
+
+**Included languages:**
+
+* English
+* German (de_DE) (Thanks to me ;-))
+* Brazilian Portuguese (pt_BR) (Thanks for contributing brazilian portuguese language goes to [Maurício Samy Silva](http://www.maujor.com))
 
 **Want update feeds, code documentation and more? Visit [extend.schloebe.de](http://extend.schloebe.de)**
 
