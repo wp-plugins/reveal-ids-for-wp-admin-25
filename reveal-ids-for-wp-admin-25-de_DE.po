@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Reveal IDs for WP Admin 2.5\n"
+"Project-Id-Version: Reveal IDs for WP Admin\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2008-06-01 22:01+0100\n"
+"PO-Revision-Date: 2008-08-25 22:23+0100\n"
 "Last-Translator: Oliver Schlöbe <webmaster@schloebe.de>\n"
 "Language-Team: Oliver Schlöbe <webmaster@schloebe.de>\n"
 "MIME-Version: 1.0\n"
@@ -15,134 +15,151 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: D:\\schloebeweb\\xampp\\htdocs\\wordpresssource\\plugins\\reveal-ids-for-wp-admin-25\\trunk\n"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:56
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:78
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:100
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:188
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:137
+msgid "Settings"
+msgstr ""
+
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:160
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:199
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:238
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:381
 msgid "Enhanced by Reveal IDs for WP Admin 2.5 Plugin"
 msgstr "Erweitert durch das Reveal IDs for WP Admin 2.5 Plugin"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:56
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:78
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:100
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:188
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:160
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:199
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:238
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:381
 msgid "ID"
 msgstr "ID"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:142
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:299
 #, php-format
 msgid "Edit \"%s\""
 msgstr ""
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:168
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:325
 msgid "No categories found."
 msgstr ""
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:216
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:434
 msgid "You still seem to have installed the former (less powerful) plugin release 'Entry IDs in Manage Posts/Pages View for WP 2.5' (manage-posts-pages-id-25.php). Please deactivate/remove it first in order to be able installing this plugin. <a href=\"javascript:history.back()\">&laquo; Back</a>"
 msgstr "Sie scheinen noch die ältere (weniger umfangreiche) Pluginversion 'Entry IDs in Manage Posts/Pages View for WP 2.5' (manage-posts-pages-id-25.php) zu nutzen. Bitte deinstallieren/löschen Sie erst das alte Plugin, um die neue Version installieren zu können. <a href=\"javascript:history.back()\">&laquo; Zurück</a>"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:224
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:448
 msgid "Reveal IDs Options"
 msgstr "Reveal IDs Optionen"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:224
-msgid "Reveal IDs for WP Admin 2.5"
-msgstr "Reveal IDs for WP Admin 2.5"
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:448
+msgid "Reveal IDs for WP Admin"
+msgstr "Reveal IDs for WP Admin"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:266
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:509
 msgid "Settings saved."
 msgstr "Einstellungen gespeichert."
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:286
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:529
 msgid "You still seem to have installed the former (less powerful) plugin release 'Entry IDs in Manage Posts/Pages View for WP 2.5' (manage-posts-pages-id-25.php). Please deactivate/remove it in order for this plugin to work properly."
 msgstr "Sie scheinen noch die ältere (weniger umfangreiche) Pluginversion 'Entry IDs in Manage Posts/Pages View for WP 2.5' (manage-posts-pages-id-25.php) zu nutzen. Bitte deinstallieren/löschen Sie erst das alte Plugin, das die neue Version ordnungsgemäß arbeiten kann."
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:297
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:540
 msgid "You appearently updated from version 0.7.4. There have been some changes in role management behaviour in this plugin. Please re-assign the options to apply the changes and to make this message disappear. ;-)"
 msgstr "Sie haben offensichtlich von Version 0.7.4 geupdated. Es gab einige größere Änderungen im Rechtemanagement des Plugins. Bitte speichern Sie die Optionen erneut, um die Änderungen zu übernehmen und diese Nachricht auszublenden. ;-)"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:329
-msgid "Reveal IDs for WP Admin 2.5 Options"
-msgstr "Reveal IDs for WP Admin 2.5 Optionen"
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:572
+msgid "Reveal IDs for WP Admin Options"
+msgstr "Reveal IDs for WP Admin Optionen"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:335
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:578
 msgid "Show Post IDs"
 msgstr "Zeige Artikel IDs"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:338
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:581
 msgid "Reveal IDs for the posts management"
 msgstr "IDs aufdecken für die Artikelverwaltung"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:340
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:583
 msgid "(This will add a new column to the posts management displaying the IDs)"
 msgstr "(Dies wird eine neue Spalte zur Artikelverwaltung hinzufügen, die die IDs anzeigt)"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:343
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:367
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:391
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:415
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:439
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:586
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:610
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:634
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:658
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:682
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:706
 msgid "What's the user role minimum allowed to see the IDs?"
 msgstr "Diese und höhere Nutzerrollen dürfen die IDs sehen:"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:359
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:602
 msgid "Show Page IDs"
 msgstr "Zeige Seiten IDs"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:362
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:605
 msgid "Reveal IDs for the pages management"
 msgstr "IDs aufdecken für die Seitenverwaltung"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:364
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:607
 msgid "(This will add a new column to the pages management displaying the IDs)"
 msgstr "(Dies wird eine neue Spalte zur Seitenverwaltung hinzufügen, die die IDs anzeigt)"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:383
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:626
 msgid "Show Link IDs"
 msgstr "Zeige Link IDs"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:386
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:629
 msgid "Reveal IDs for the links management"
 msgstr "IDs aufdecken für die Linkverwaltung"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:388
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:631
 msgid "(This will add a new column to the links management displaying the IDs)"
 msgstr "(Dies wird eine neue Spalte zur Linkverwaltung hinzufügen, die die IDs anzeigt)"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:407
-msgid "Show Category IDs<br /><span style=\"color:#ff0000;font-weight:200;\">Alpha (Use at your own risk!)</span>"
-msgstr "Zeige Kategorie IDs<br /><span style=\"color:#ff0000;font-weight:200;\">Alpha (Benutzung auf eigene Gefahr!)</span>"
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:650
+msgid "Show Category IDs"
+msgstr "Zeige Kategorie IDs"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:410
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:653
 msgid "Reveal IDs for the category management"
 msgstr "IDs aufdecken für die Kategorieverwaltung"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:412
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:655
 msgid "(This will add the ID after the category title)"
 msgstr "(Dies wird die ID nach dem Titel der Kategorie einfügen)"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:431
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:674
 msgid "Show Media IDs"
 msgstr "Zeige Mediathek IDs"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:434
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:677
 msgid "Reveal IDs for the media management"
 msgstr "IDs aufdecken für die Mediathek"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:436
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:679
 msgid "(This will add a new column to the media management displaying the IDs)"
 msgstr "(Dies wird eine neue Spalte zur Mediathek hinzufügen, die die IDs anzeigt)"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:453
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:698
+msgid "Show User IDs"
+msgstr "Zeige Benutzer IDs"
+
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:701
+msgid "Reveal IDs for the user management"
+msgstr "IDs aufdecken für die Benutzerverwaltung"
+
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:703
+msgid "(This will add the ID after the user name)"
+msgstr "(Dies wird die ID nach dem Benutzernamen einfügen)"
+
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:720
 msgid "Save Changes"
 msgstr "Änderungen speichern"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:457
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:724
 msgid "Help"
 msgstr "Hilfe"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:462
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\reveal-ids-for-wp-admin-25\trunk/reveal-ids-for-wp-admin-25.php:729
 msgid "If you are new to using this plugin or cant understand what all these settings do, please read the documentation at <a href=\"http://www.schloebe.de/wordpress/simple-yearly-archive-plugin/\" target=\"_blank\">http://www.schloebe.de/wordpress/reveal-ids-for-wp-admin-25-plugin/</a>"
 msgstr "Falls Sie dieses Plugin zum ersten Mal benutzen und nicht wissen, was all diese Optionen machen, schauen Sie bitte in die Dokumentation auf <a href=\"http://www.schloebe.de/wordpress/reveal-ids-for-wp-admin-25-plugin/\" target=\"_blank\">http://www.schloebe.de/wordpress/reveal-ids-for-wp-admin-25-plugin/</a>"
 
