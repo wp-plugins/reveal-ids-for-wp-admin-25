@@ -8,7 +8,7 @@
  
 /*
 Plugin Name: Reveal IDs for WP Admin
-Version: 1.0
+Version: 1.0.1
 Plugin URI: http://www.schloebe.de/wordpress/reveal-ids-for-wp-admin-25-plugin/
 Description: <strong>WordPress 2.5+ only.</strong> Reveals hidden IDs in Admin interface that have been removed with WordPress 2.5 (formerly known as Entry IDs in Manage Posts/Pages View for WP 2.5). See <a href="options-general.php?page=reveal-ids-for-wp-admin-25/reveal-ids-for-wp-admin-25.php">Options Page</a> for options and information.
 Author: Oliver Schl&ouml;be
@@ -58,9 +58,14 @@ define("RIDWPA_PLUGINPATH", "/" . plugin_basename( dirname(__FILE__) ) . "/");
 define("RIDWPA_PLUGINFULLURL", WP_CONTENT_URL . '/plugins' . RIDWPA_PLUGINPATH );
 
 /**
+ * Define the plugin full dir
+ */
+define("RIDWPA_PLUGINFULLDIR", WP_CONTENT_DIR . '/plugins' . RIDWPA_PLUGINPATH );
+
+/**
  * Define the plugin version
  */
-define("RIDWPA_VERSION", "1.0");
+define("RIDWPA_VERSION", "1.0.1");
 
 
 /**
@@ -448,6 +453,17 @@ function ridwpa_add_optionpages() {
 	add_options_page(__('Reveal IDs Options', 'reveal-ids-for-wp-admin-25'), __('Reveal IDs for WP Admin', 'reveal-ids-for-wp-admin-25'), 8, __FILE__, 'ridwpa_options_page');
 }
 
+
+if( version_compare($wp_version, '2.5', '>=') ) {
+	set_include_path( dirname(__FILE__) . PATH_SEPARATOR . get_include_path() );
+	/** 
+	 * This file holds all the author plugins functions
+	 */
+	require_once(dirname (__FILE__) . '/' . 'authorplugins.inc.php');
+	restore_include_path();
+}
+
+
 /**
  * Adds the plugin's default settings
  *
@@ -491,6 +507,7 @@ function ridwpa_DefaultSettings() {
  * @author scripts@schloebe.de
  */
 function ridwpa_options_page() {
+	global $wp_version;
 	if (isset($_POST['action']) === true) {
 		update_option("ridwpa_post_ids_enable", (int)$_POST['ridwpa_post_ids_enable']);
 		update_option("ridwpa_page_ids_enable", (int)$_POST['ridwpa_page_ids_enable']);
@@ -720,6 +737,31 @@ function enable_options(area, status) {
 				<input type="submit" name="submit" value="<?php _e('Save Changes'); ?> &raquo;" />
 			</p>
 			</form>
+		<?php if( version_compare($wp_version, '2.5', '>=') ) { ?>
+      	<h3>
+        	<?php _e('More of my WordPress plugins', 'reveal-ids-for-wp-admin-25'); ?>
+      	</h3>
+		<table class="form-table">
+ 		<tr>
+ 			<td>
+ 				<?php _e('You may also be interested in some of my other plugins:', 'reveal-ids-for-wp-admin-25'); ?>
+				<p id="authorplugins-wrap"><input id="authorplugins-start" value="<?php _e('Show other plugins by this author inline &raquo;', 'reveal-ids-for-wp-admin-25'); ?>" class="button-secondary" type="button"></p>
+				<div id="authorplugins-wrap">
+					<div id='authorplugins'>
+						<div class='authorplugins-holder full' id='authorplugins_secondary'>
+							<div class='authorplugins-content'>
+								<ul id="authorpluginsul">
+									
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+ 				<?php _e('More information at: <a href="http://extend.schloebe.de" target="_blank">http://extend.schloebe.de</a>', 'reveal-ids-for-wp-admin-25'); ?>
+ 			</td>
+ 		</tr>
+		</table>
+		<?php } ?>
       	<h3>
         	<?php _e('Help', 'reveal-ids-for-wp-admin-25'); ?>
       	</h3>
