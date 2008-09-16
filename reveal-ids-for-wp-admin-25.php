@@ -8,7 +8,7 @@
  
 /*
 Plugin Name: Reveal IDs for WP Admin
-Version: 1.0.1
+Version: 1.0.2
 Plugin URI: http://www.schloebe.de/wordpress/reveal-ids-for-wp-admin-25-plugin/
 Description: <strong>WordPress 2.5+ only.</strong> Reveals hidden IDs in Admin interface that have been removed with WordPress 2.5 (formerly known as Entry IDs in Manage Posts/Pages View for WP 2.5). See <a href="options-general.php?page=reveal-ids-for-wp-admin-25/reveal-ids-for-wp-admin-25.php">Options Page</a> for options and information.
 Author: Oliver Schl&ouml;be
@@ -35,16 +35,14 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 /**
  * Pre-2.6 compatibility
  */
-if ( !defined('WP_CONTENT_URL') )
-	/**
- 	* @ignore
- 	*/
-    define( 'WP_CONTENT_URL', get_option('siteurl') . '/wp-content');
-if ( !defined('WP_CONTENT_DIR') )
-	/**
- 	* @ignore
- 	*/
-    define( 'WP_CONTENT_DIR', ABSPATH . 'wp-content' );
+if ( ! defined( 'WP_CONTENT_URL' ) )
+      define( 'WP_CONTENT_URL', get_option( 'siteurl' ) . '/wp-content' );
+if ( ! defined( 'WP_CONTENT_DIR' ) )
+      define( 'WP_CONTENT_DIR', ABSPATH . 'wp-content' );
+if ( ! defined( 'WP_PLUGIN_URL' ) )
+      define( 'WP_PLUGIN_URL', WP_CONTENT_URL. '/plugins' );
+if ( ! defined( 'WP_PLUGIN_DIR' ) )
+      define( 'WP_PLUGIN_DIR', WP_CONTENT_DIR . '/plugins' );
 
 
 /**
@@ -55,17 +53,17 @@ define("RIDWPA_PLUGINPATH", "/" . plugin_basename( dirname(__FILE__) ) . "/");
 /**
  * Define the plugin full url
  */
-define("RIDWPA_PLUGINFULLURL", WP_CONTENT_URL . '/plugins' . RIDWPA_PLUGINPATH );
+define("RIDWPA_PLUGINFULLURL", WP_PLUGIN_URL . RIDWPA_PLUGINPATH );
 
 /**
  * Define the plugin full dir
  */
-define("RIDWPA_PLUGINFULLDIR", WP_CONTENT_DIR . '/plugins' . RIDWPA_PLUGINPATH );
+define("RIDWPA_PLUGINFULLDIR", WP_PLUGIN_DIR . RIDWPA_PLUGINPATH );
 
 /**
  * Define the plugin version
  */
-define("RIDWPA_VERSION", "1.0.1");
+define("RIDWPA_VERSION", "1.0.2");
 
 
 /**
@@ -408,17 +406,20 @@ add_action('manage_media_custom_column', 'ridwpa_custom_column_media_id_25', 5, 
 add_filter('manage_media_columns', 'ridwpa_column_media_id_25', 5, 2);
 
 
-if ( function_exists('load_plugin_textdomain') ) {
-	/**
-	* Load all the l18n data from languages path
-	*/
-	if ( !defined('WP_PLUGIN_DIR') ) {
-		load_plugin_textdomain('reveal-ids-for-wp-admin-25', str_replace( ABSPATH, '', dirname(__FILE__) ));
-	} else {
-		load_plugin_textdomain('reveal-ids-for-wp-admin-25', false, dirname(plugin_basename(__FILE__)));
+function ridwpa_load_textdomain() {
+	if ( function_exists('load_plugin_textdomain') ) {
+		/**
+		* Load all the l18n data from languages path
+		*/
+		if ( !defined('WP_PLUGIN_DIR') ) {
+			load_plugin_textdomain('reveal-ids-for-wp-admin-25', str_replace( ABSPATH, '', dirname(__FILE__)) . '/languages' );
+		} else {
+			load_plugin_textdomain('reveal-ids-for-wp-admin-25', false, dirname(plugin_basename(__FILE__)) . '/languages' );
+		}
 	}
 }
 
+add_action('init', 'ridwpa_load_textdomain');
 add_action('admin_menu', 'ridwpa_add_optionpages');
 add_action('admin_menu', 'ridwpa_DefaultSettings');
 
