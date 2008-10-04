@@ -8,7 +8,7 @@
  
 /*
 Plugin Name: Reveal IDs for WP Admin
-Version: 1.0.2
+Version: 1.0.3
 Plugin URI: http://www.schloebe.de/wordpress/reveal-ids-for-wp-admin-25-plugin/
 Description: <strong>WordPress 2.5+ only.</strong> Reveals hidden IDs in Admin interface that have been removed with WordPress 2.5 (formerly known as Entry IDs in Manage Posts/Pages View for WP 2.5). See <a href="options-general.php?page=reveal-ids-for-wp-admin-25/reveal-ids-for-wp-admin-25.php">Options Page</a> for options and information.
 Author: Oliver Schl&ouml;be
@@ -63,7 +63,7 @@ define("RIDWPA_PLUGINFULLDIR", WP_PLUGIN_DIR . RIDWPA_PLUGINPATH );
 /**
  * Define the plugin version
  */
-define("RIDWPA_VERSION", "1.0.2");
+define("RIDWPA_VERSION", "1.0.3");
 
 
 /**
@@ -435,6 +435,7 @@ register_activation_hook( __FILE__, 'ridwpa_activate' );
  * @return bool
  */
 function ridwpa_activate() {
+	global $wp_version;
 	if( function_exists('os_column_page_id_25') ) {
 		deactivate_plugins(__FILE__);
 		wp_die(__('You still seem to have installed the former (less powerful) plugin release \'Entry IDs in Manage Posts/Pages View for WP 2.5\' (manage-posts-pages-id-25.php). Please deactivate/remove it first in order to be able installing this plugin. <a href="javascript:history.back()">&laquo; Back</a>', 'reveal-ids-for-wp-admin-25'));
@@ -443,6 +444,30 @@ function ridwpa_activate() {
 		//return;
 	}
 }
+	
+	
+/**
+* Checks if the plugin options have been saved once
+* and adds a message to inform the user if not
+*
+* @since 1.0.3
+* @author scripts@schloebe.de
+*/
+function ridwpa_activationNotice() {
+	$assignoptionsoncemessage = __('You just installed the "Reveal IDs for WP Admin" plugin. Please <a href="options-general.php?page=reveal-ids-for-wp-admin-25/reveal-ids-for-wp-admin-25.php">save the options once</a> to assign the new capabilities to the system!', 'reveal-ids-for-wp-admin-25');
+	echo '<div id="assignoptionsoncemessage" class="error fade">
+		<p>
+			<strong>
+				' . $assignoptionsoncemessage . '
+			</strong>
+		</p>
+	</div>';
+}
+
+if( version_compare( $wp_version, '2.5', '>=' ) && get_option('ridwpa_reassigned_075_options') == '0' ) {
+	add_action('admin_notices', 'ridwpa_activationNotice');
+}
+	
 
 /**
  * Adds the plugin's options page
@@ -456,12 +481,10 @@ function ridwpa_add_optionpages() {
 
 
 if( version_compare($wp_version, '2.5', '>=') ) {
-	set_include_path( dirname(__FILE__) . PATH_SEPARATOR . get_include_path() );
 	/** 
 	 * This file holds all the author plugins functions
 	 */
 	require_once(dirname (__FILE__) . '/' . 'authorplugins.inc.php');
-	restore_include_path();
 }
 
 
@@ -549,17 +572,6 @@ function ridwpa_options_page() {
 		<p>
 			<strong>
 				' . $errormessage . '
-			</strong>
-		</p>
-	</div>';
-	}
-		
-	if( get_option('ridwpa_reassigned_075_options') == '0' ) {
-		$upgrade075message = __('You appearently updated from version 0.7.4. There have been some changes in role management behaviour in this plugin. Please re-assign the options to apply the changes and to make this message disappear. ;-)', 'reveal-ids-for-wp-admin-25');
-		echo '<div id="message2" class="error fade">
-		<p>
-			<strong>
-				' . $upgrade075message . '
 			</strong>
 		</p>
 	</div>';
