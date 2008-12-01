@@ -8,7 +8,7 @@
  
 /*
 Plugin Name: Reveal IDs for WP Admin
-Version: 1.0.3
+Version: 1.0.4
 Plugin URI: http://www.schloebe.de/wordpress/reveal-ids-for-wp-admin-25-plugin/
 Description: <strong>WordPress 2.5+ only.</strong> Reveals hidden IDs in Admin interface that have been removed with WordPress 2.5 (formerly known as Entry IDs in Manage Posts/Pages View for WP 2.5). See <a href="options-general.php?page=reveal-ids-for-wp-admin-25/reveal-ids-for-wp-admin-25.php">Options Page</a> for options and information.
 Author: Oliver Schl&ouml;be
@@ -63,7 +63,7 @@ define("RIDWPA_PLUGINFULLDIR", WP_PLUGIN_DIR . RIDWPA_PLUGINPATH );
 /**
  * Define the plugin version
  */
-define("RIDWPA_VERSION", "1.0.3");
+define("RIDWPA_VERSION", "1.0.4");
 
 
 /**
@@ -263,6 +263,10 @@ add_action('manage_link_custom_column', 'ridwpa_custom_column_link_id_25', 5, 2)
 add_filter('manage_link_columns', 'ridwpa_column_link_id_25', 5, 2);
 
 
+
+
+
+
 /**
  * Adds the category 'ID' to the category management view
  *
@@ -420,8 +424,11 @@ function ridwpa_load_textdomain() {
 }
 
 add_action('init', 'ridwpa_load_textdomain');
-add_action('admin_menu', 'ridwpa_add_optionpages');
-add_action('admin_menu', 'ridwpa_DefaultSettings');
+if ( is_admin() ) {
+	//add_action('admin_menu', 'ridwpa_add_optionpages');
+	add_action('admin_menu', 'ridwpa_add_option_menu');
+	add_action('admin_menu', 'ridwpa_DefaultSettings');
+}
 
 register_activation_hook( __FILE__, 'ridwpa_activate' );
 
@@ -467,13 +474,81 @@ function ridwpa_activationNotice() {
 if( version_compare( $wp_version, '2.5', '>=' ) && get_option('ridwpa_reassigned_075_options') == '0' ) {
 	add_action('admin_notices', 'ridwpa_activationNotice');
 }
-	
+
+
+/**
+ * @since 1.0.4
+ * @use function ridwpa_get_resource_url() to display
+ */
+if( isset($_GET['resource']) && !empty($_GET['resource'])) {
+	# base64 encoding
+	$resources = array(
+		'clipboard.gif' =>
+		'R0lGODlhCgAKAKIAADMzM//M/93d3ZCQkGZmZv///wAAAAAAAC'.
+'H5BAEHAAEALAAAAAAKAAoAAAMgGBozq4OQUqQLU8qqiPgg0YHh'.
+'SAoidqImmXpnOgB07SQAOw=='.
+'');
+ 
+	if(array_key_exists($_GET['resource'], $resources)) {
+ 
+		$content = base64_decode($resources[ $_GET['resource'] ]);
+ 
+		$lastMod = filemtime(__FILE__);
+		$client = ( isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) ? $_SERVER['HTTP_IF_MODIFIED_SINCE'] : false );
+		if (isset($client) && (strtotime($client) == $lastMod)) {
+			header('Last-Modified: '.gmdate('D, d M Y H:i:s', $lastMod).' GMT', true, 304);
+			exit;
+		} else {
+			header('Last-Modified: '.gmdate('D, d M Y H:i:s', $lastMod).' GMT', true, 200);
+			header('Content-Length: '.strlen($content));
+			header('Content-Type: image/' . substr(strrchr($_GET['resource'], '.'), 1) );
+			echo $content;
+			exit;
+		}
+	}
+}
+ 
+
+/**
+ * Display Images/Icons base64-encoded
+ * 
+ * @since 1.0.4
+ * @author scripts@schloebe.de
+ * @param $resourceID
+ * @return $resourceURL
+ */
+function ridwpa_get_resource_url( $resourceID ) {
+	return trailingslashit( get_bloginfo('url') ) . '?resource=' . $resourceID;
+}
+
+
+/**
+ * Adds the plugin's options page
+ * 
+ * @since 1.0.4
+ * @author scripts@schloebe.de
+ */
+function ridwpa_add_option_menu() {
+	global $wp_version;
+	if ( current_user_can('switch_themes') && function_exists('add_submenu_page') ) {
+		$menutitle = '';
+		if ( version_compare( $wp_version, '2.6.999', '>' ) ) {
+			$menutitle = '<img src="' . ridwpa_get_resource_url('clipboard.gif') . '" alt="" />' . ' ';
+		}
+		$menutitle .= __('Reveal IDs for WP Admin', 'reveal-ids-for-wp-admin-25');
+ 
+		add_submenu_page('options-general.php', __('Reveal IDs for WP Admin', 'reveal-ids-for-wp-admin-25'), $menutitle, 8, __FILE__, 'ridwpa_options_page');
+	}
+}
+
 
 /**
  * Adds the plugin's options page
  *
  * @since 0.7
  * @author scripts@schloebe.de
+ * @deprecated Deprecated since version 1.0.4
+ * @see ridwpa_add_option_menu()
  */
 function ridwpa_add_optionpages() {
 	add_options_page(__('Reveal IDs Options', 'reveal-ids-for-wp-admin-25'), __('Reveal IDs for WP Admin', 'reveal-ids-for-wp-admin-25'), 8, __FILE__, 'ridwpa_options_page');
@@ -747,7 +822,7 @@ function enable_options(area, status) {
 			</script>
 			<?php } ?>
 			<p class="submit">
-				<input type="submit" name="submit" value="<?php _e('Save Changes'); ?> &raquo;" />
+				<input type="submit" name="submit" value="<?php _e('Save Changes'); ?> &raquo;" class="button-primary" />
 			</p>
 			</form>
 		<?php if( version_compare($wp_version, '2.5', '>=') ) { ?>
