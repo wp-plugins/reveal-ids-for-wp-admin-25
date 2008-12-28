@@ -8,12 +8,11 @@
  
 /*
 Plugin Name: Reveal IDs for WP Admin
-Version: 1.0.4
+Version: 1.0.5
 Plugin URI: http://www.schloebe.de/wordpress/reveal-ids-for-wp-admin-25-plugin/
 Description: <strong>WordPress 2.5+ only.</strong> Reveals hidden IDs in Admin interface that have been removed with WordPress 2.5 (formerly known as Entry IDs in Manage Posts/Pages View for WP 2.5). See <a href="options-general.php?page=reveal-ids-for-wp-admin-25/reveal-ids-for-wp-admin-25.php">Options Page</a> for options and information.
 Author: Oliver Schl&ouml;be
 Author URI: http://www.schloebe.de/
-
 
 Copyright 2008 Oliver Schlöbe (email : webmaster@schloebe.de)
 
@@ -46,6 +45,11 @@ if ( ! defined( 'WP_PLUGIN_DIR' ) )
 
 
 /**
+ * Define the plugin version
+ */
+define("RIDWPA_VERSION", "1.0.5");
+
+/**
  * Define the plugin path slug
  */
 define("RIDWPA_PLUGINPATH", "/" . plugin_basename( dirname(__FILE__) ) . "/");
@@ -59,11 +63,6 @@ define("RIDWPA_PLUGINFULLURL", WP_PLUGIN_URL . RIDWPA_PLUGINPATH );
  * Define the plugin full dir
  */
 define("RIDWPA_PLUGINFULLDIR", WP_PLUGIN_DIR . RIDWPA_PLUGINPATH );
-
-/**
- * Define the plugin version
- */
-define("RIDWPA_VERSION", "1.0.4");
 
 
 /**
@@ -156,9 +155,9 @@ add_filter('plugin_action_links', 'ridwpa_filter_plugin_actions', 10, 2);
  * @return array
  */
 function ridwpa_column_pages_id_25($defaults) {
-    $wp_version = (!isset($wp_version)) ? get_bloginfo('version') : $wp_version;
+    $GLOBALS['wp_version'] = (!isset($GLOBALS['wp_version'])) ? get_bloginfo('version') : $GLOBALS['wp_version'];
 
-    if ( version_compare( $wp_version, '2.5', '>=' ) ) {
+    if ( version_compare( $GLOBALS['wp_version'], '2.5', '>=' ) ) {
     	if ( get_option("ridwpa_page_ids_enable") && current_user_can('Reveal IDs See Page IDs') ) {
         	$defaults['ridwpa_page_id_25'] = '<abbr style="cursor:help;" title="' . __('Enhanced by Reveal IDs for WP Admin 2.5 Plugin', 'reveal-ids-for-wp-admin-25') . '">' . __('ID') . '</abbr>';
         }
@@ -195,9 +194,9 @@ add_filter('manage_pages_columns', 'ridwpa_column_pages_id_25', 5, 2);
  * @return array
  */
 function ridwpa_column_post_id_25( $defaults ) {
-	$wp_version = (!isset($wp_version)) ? get_bloginfo('version') : $wp_version;
+	$GLOBALS['wp_version'] = (!isset($GLOBALS['wp_version'])) ? get_bloginfo('version') : $GLOBALS['wp_version'];
 	
-	if ( version_compare( $wp_version, '2.5', '>=' ) ) {
+	if ( version_compare( $GLOBALS['wp_version'], '2.5', '>=' ) ) {
 		if ( get_option("ridwpa_post_ids_enable") && current_user_can('Reveal IDs See Post IDs') ) {
     		$defaults['ridwpa_post_id_25'] = '<abbr style="cursor:help;" title="' . __('Enhanced by Reveal IDs for WP Admin 2.5 Plugin', 'reveal-ids-for-wp-admin-25') . '">' . __('ID') . '</abbr>';
     	}
@@ -234,9 +233,9 @@ add_filter('manage_posts_columns', 'ridwpa_column_post_id_25', 5, 2);
  * @return array
  */
 function ridwpa_column_link_id_25( $defaults ) {
-	$wp_version = (!isset($wp_version)) ? get_bloginfo('version') : $wp_version;
+	$GLOBALS['wp_version'] = (!isset($GLOBALS['wp_version'])) ? get_bloginfo('version') : $GLOBALS['wp_version'];
 	
-	if ( version_compare( $wp_version, '2.5', '>=' ) ) {
+	if ( version_compare( $GLOBALS['wp_version'], '2.5', '>=' ) ) {
 		if ( get_option("ridwpa_link_ids_enable") && current_user_can('Reveal IDs See Link IDs') ) {
  			$defaults['ridwpa_link_id_25'] = '<th><abbr style="cursor:help;" title="' . __('Enhanced by Reveal IDs for WP Admin 2.5 Plugin', 'reveal-ids-for-wp-admin-25') . '">' . __('ID') . '</abbr></th>';
  		}
@@ -280,9 +279,9 @@ add_filter('manage_link_columns', 'ridwpa_column_link_id_25', 5, 2);
  */
 function ridwpa_column_cat_id_25( $output ) {
 	if ( get_option("ridwpa_cat_ids_enable") && current_user_can('Reveal IDs See Category IDs') ) {
-	$wp_version = (!isset($wp_version)) ? get_bloginfo('version') : $wp_version;
+	$GLOBALS['wp_version'] = (!isset($GLOBALS['wp_version'])) ? get_bloginfo('version') : $GLOBALS['wp_version'];
 	
-	if ( version_compare( $wp_version, '2.5', '>=' ) && basename($_SERVER['SCRIPT_FILENAME']) == 'categories.php' ) {
+	if ( version_compare( $GLOBALS['wp_version'], '2.5', '>=' ) && basename($_SERVER['SCRIPT_FILENAME']) == 'categories.php' ) {
 		$name_override = false;
  		global $class;
  		$parent = 0; $level = 0;
@@ -381,9 +380,9 @@ add_action('admin_print_scripts-users.php', 'ridwpa_user_js_header');
  * @return array
  */
 function ridwpa_column_media_id_25( $defaults ) {
-	$wp_version = (!isset($wp_version)) ? get_bloginfo('version') : $wp_version;
+	$GLOBALS['wp_version'] = (!isset($GLOBALS['wp_version'])) ? get_bloginfo('version') : $GLOBALS['wp_version'];
 	
-	if ( version_compare( $wp_version, '2.5', '>=' ) ) {
+	if ( version_compare( $GLOBALS['wp_version'], '2.5', '>=' ) ) {
 		if ( get_option("ridwpa_media_ids_enable") && current_user_can('Reveal IDs See Media IDs') ) {
     		$defaults['ridwpa_media_id_25'] = '<abbr style="cursor:help;" title="' . __('Enhanced by Reveal IDs for WP Admin 2.5 Plugin', 'reveal-ids-for-wp-admin-25') . '">' . __('ID') . '</abbr>';
     	}
@@ -442,7 +441,6 @@ register_activation_hook( __FILE__, 'ridwpa_activate' );
  * @return bool
  */
 function ridwpa_activate() {
-	global $wp_version;
 	if( function_exists('os_column_page_id_25') ) {
 		deactivate_plugins(__FILE__);
 		wp_die(__('You still seem to have installed the former (less powerful) plugin release \'Entry IDs in Manage Posts/Pages View for WP 2.5\' (manage-posts-pages-id-25.php). Please deactivate/remove it first in order to be able installing this plugin. <a href="javascript:history.back()">&laquo; Back</a>', 'reveal-ids-for-wp-admin-25'));
@@ -471,14 +469,14 @@ function ridwpa_activationNotice() {
 	</div>';
 }
 
-if( version_compare( $wp_version, '2.5', '>=' ) && get_option('ridwpa_reassigned_075_options') == '0' ) {
+if( version_compare( $GLOBALS['wp_version'], '2.5', '>=' ) && get_option('ridwpa_reassigned_075_options') == '0' ) {
 	add_action('admin_notices', 'ridwpa_activationNotice');
 }
 
 
 /**
  * @since 1.0.4
- * @use function ridwpa_get_resource_url() to display
+ * @uses function ridwpa_get_resource_url() to display
  */
 if( isset($_GET['resource']) && !empty($_GET['resource'])) {
 	# base64 encoding
@@ -529,10 +527,9 @@ function ridwpa_get_resource_url( $resourceID ) {
  * @author scripts@schloebe.de
  */
 function ridwpa_add_option_menu() {
-	global $wp_version;
 	if ( current_user_can('switch_themes') && function_exists('add_submenu_page') ) {
 		$menutitle = '';
-		if ( version_compare( $wp_version, '2.6.999', '>' ) ) {
+		if ( version_compare( $GLOBALS['wp_version'], '2.6.999', '>' ) ) {
 			$menutitle = '<img src="' . ridwpa_get_resource_url('clipboard.gif') . '" alt="" />' . ' ';
 		}
 		$menutitle .= __('Reveal IDs for WP Admin', 'reveal-ids-for-wp-admin-25');
@@ -555,7 +552,7 @@ function ridwpa_add_optionpages() {
 }
 
 
-if( version_compare($wp_version, '2.5', '>=') ) {
+if( version_compare($GLOBALS['wp_version'], '2.5', '>=') ) {
 	/** 
 	 * This file holds all the author plugins functions
 	 */
@@ -606,7 +603,6 @@ function ridwpa_DefaultSettings() {
  * @author scripts@schloebe.de
  */
 function ridwpa_options_page() {
-	global $wp_version;
 	if (isset($_POST['action']) === true) {
 		update_option("ridwpa_post_ids_enable", (int)$_POST['ridwpa_post_ids_enable']);
 		update_option("ridwpa_page_ids_enable", (int)$_POST['ridwpa_page_ids_enable']);
@@ -676,8 +672,12 @@ function enable_options(area, status) {
 		<h2>
         <?php _e('Reveal IDs for WP Admin Options', 'reveal-ids-for-wp-admin-25'); ?>
       	</h2>
+		<br class="clear" />
       	<form name="ridwpa_form" id="ridwpa_form" action="" method="post">
       	<input type="hidden" name="action" value="edit" />
+			<div id="poststuff" class="ui-sortable">
+			<div id="ridwpa_ids_box" class="postbox if-js-open">
+			<h3><?php _e('Reveal IDs for WP Admin Options', 'reveal-ids-for-wp-admin-25'); ?></h3>
 			<table class="form-table <?php echo (!get_option('ridwpa_post_ids_enable')) ? 'ridwpa_table_disabled' : ''; ?>">
  			<tr>
  				<th scope="row" valign="top"><?php _e('Show Post IDs', 'reveal-ids-for-wp-admin-25'); ?></th>
@@ -821,11 +821,15 @@ function enable_options(area, status) {
 			enable_options('user_ids', true);
 			</script>
 			<?php } ?>
+			<div class="inside">
 			<p class="submit">
 				<input type="submit" name="submit" value="<?php _e('Save Changes'); ?> &raquo;" class="button-primary" />
 			</p>
+			</div>
+			</div>
 			</form>
-		<?php if( version_compare($wp_version, '2.5', '>=') ) { ?>
+		<?php if( version_compare($GLOBALS['wp_version'], '2.4', '>') ) { ?>
+		<div id="ridwpa_plugins_box" class="postbox if-js-open">
       	<h3>
         	<?php _e('More of my WordPress plugins', 'reveal-ids-for-wp-admin-25'); ?>
       	</h3>
@@ -849,7 +853,10 @@ function enable_options(area, status) {
  			</td>
  		</tr>
 		</table>
+		</div>
 		<?php } ?>
+		
+		<div id="ridwpa_help_box" class="postbox">
       	<h3>
         	<?php _e('Help', 'reveal-ids-for-wp-admin-25'); ?>
       	</h3>
@@ -860,6 +867,9 @@ function enable_options(area, status) {
  			</td>
  		</tr>
 		</table>
+		</div>
+		
+		</div>
  	</div>
 <?php
 }
