@@ -8,7 +8,7 @@
  
 /*
 Plugin Name: Reveal IDs for WP Admin
-Version: 1.0.6
+Version: 1.1.0
 Plugin URI: http://www.schloebe.de/wordpress/reveal-ids-for-wp-admin-25-plugin/
 Description: <strong>WordPress 2.5+ only.</strong> Reveals hidden IDs in Admin interface that have been removed with WordPress 2.5 (formerly known as Entry IDs in Manage Posts/Pages View for WP 2.5). See <a href="options-general.php?page=reveal-ids-for-wp-admin-25/reveal-ids-for-wp-admin-25.php">Options Page</a> for options and information.
 Author: Oliver Schl&ouml;be
@@ -47,7 +47,7 @@ if ( ! defined( 'WP_PLUGIN_DIR' ) )
 /**
  * Define the plugin version
  */
-define("RIDWPA_VERSION", "1.0.6");
+define("RIDWPA_VERSION", "1.1.0");
 
 /**
  * Define the plugin path slug
@@ -157,7 +157,7 @@ add_filter('plugin_action_links', 'ridwpa_filter_plugin_actions', 10, 2);
 function ridwpa_column_pages_id_25($defaults) {
     $GLOBALS['wp_version'] = (!isset($GLOBALS['wp_version'])) ? get_bloginfo('version') : $GLOBALS['wp_version'];
 
-    if ( version_compare( $GLOBALS['wp_version'], '2.5', '>=' ) ) {
+    if ( version_compare( $GLOBALS['wp_version'], '2.4.999', '>' ) ) {
     	if ( get_option("ridwpa_page_ids_enable") && current_user_can('Reveal IDs See Page IDs') ) {
         	$defaults['ridwpa_page_id_25'] = '<abbr style="cursor:help;" title="' . __('Enhanced by Reveal IDs for WP Admin 2.5 Plugin', 'reveal-ids-for-wp-admin-25') . '">' . __('ID') . '</abbr>';
         }
@@ -263,7 +263,7 @@ function ridwpa_custom_column_link_id_25($column_name, $id) {
 }
 
 add_action('manage_link_custom_column', 'ridwpa_custom_column_link_id_25', 5, 2);
-if( version_compare($GLOBALS['wp_version'], '2.6.999', '>=') ) {
+if( version_compare($GLOBALS['wp_version'], '2.6.999', '>') ) {
 	add_filter('manage_link-manager_columns', 'ridwpa_column_link_id_25', 5, 2);
 } else {
 	add_filter('manage_link_columns', 'ridwpa_column_link_id_25', 5, 2);
@@ -287,7 +287,7 @@ function ridwpa_column_cat_id_25( $output ) {
 	if ( get_option("ridwpa_cat_ids_enable") && current_user_can('Reveal IDs See Category IDs') ) {
 	$GLOBALS['wp_version'] = (!isset($GLOBALS['wp_version'])) ? get_bloginfo('version') : $GLOBALS['wp_version'];
 	
-	if ( version_compare( $GLOBALS['wp_version'], '2.5', '>=' ) && basename($_SERVER['SCRIPT_FILENAME']) == 'categories.php' ) {
+	if ( version_compare( $GLOBALS['wp_version'], '2.4.999', '>' ) && basename($_SERVER['SCRIPT_FILENAME']) == 'categories.php' ) {
 		$name_override = false;
  		global $class;
  		$parent = 0; $level = 0;
@@ -355,8 +355,11 @@ function ridwpa_column_cat_id_25( $output ) {
  * @author scripts@schloebe.de
  */
 function ridwpa_cat_js_header() {
-	if ( get_option("ridwpa_cat_ids_enable") && current_user_can('Reveal IDs See Category IDs') ) {
+	if ( get_option("ridwpa_cat_ids_enable") && basename($_SERVER['SCRIPT_FILENAME']) == 'categories.php' && current_user_can('Reveal IDs See Category IDs') ) {
 		add_action('admin_head', wp_enqueue_script( 'id-reader-cat', RIDWPA_PLUGINFULLURL . "js/id-reader-cat.js", array('jquery'), RIDWPA_VERSION ) );
+	}
+	if ( basename($_SERVER['SCRIPT_FILENAME']) == 'edit-link-categories.php' && current_user_can( 'manage_categories' ) ) {
+		add_action('admin_head', wp_enqueue_script( 'id-reader-linkcat', RIDWPA_PLUGINFULLURL . "js/id-reader-linkcat.js", array('jquery'), RIDWPA_VERSION ) );
 	}
 }
 
@@ -372,8 +375,17 @@ function ridwpa_user_js_header() {
 	}
 }
 
-add_action('admin_print_scripts-categories.php', 'ridwpa_cat_js_header');
-add_action('admin_print_scripts-users.php', 'ridwpa_user_js_header');
+switch( basename($_SERVER['SCRIPT_FILENAME']) ) {
+	case 'categories.php':
+		add_action('admin_print_scripts', 'ridwpa_cat_js_header');
+		break;
+	case 'edit-link-categories.php':
+		add_action('admin_print_scripts', 'ridwpa_cat_js_header');
+		break;
+	case 'users.php':
+		add_action('admin_print_scripts', 'ridwpa_user_js_header');
+		break;
+}
 
 
 /**
