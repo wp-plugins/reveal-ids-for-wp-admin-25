@@ -26,6 +26,7 @@ What this plugin does is to reveal most removed entry IDs on admin pages, showin
 * Brazilian Portuguese (pt_BR) (Thanks for contributing brazilian portuguese language goes to [Maurício Samy Silva](http://www.maujor.com))
 * Italian (it_IT) (Thanks for contributing italian language goes to Gianluca Urgese)
 * Spanish (es_ES) (Thanks for contributing spanish language goes to [Karin Sequen](http://www.es-xchange.com))
+* Russian (ru_RU) (Thanks for contributing russian language goes to Dimitry German)
 
 **Want update feeds, code documentation and more? Visit [extend.schloebe.de](http://extend.schloebe.de)**
 
