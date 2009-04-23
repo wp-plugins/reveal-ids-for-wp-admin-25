@@ -1,7 +1,7 @@
 <?php 
 /*
 Plugin Name: Reveal IDs for WP Admin
-Version: 1.1.1
+Version: 1.1.2
 Plugin URI: http://www.schloebe.de/wordpress/reveal-ids-for-wp-admin-25-plugin/
 Description: <strong>WordPress 2.5+ only.</strong> Reveals hidden IDs in Admin interface that have been removed with WordPress 2.5 (formerly known as Entry IDs in Manage Posts/Pages View for WP 2.5). See <a href="options-general.php?page=reveal-ids-for-wp-admin-25/reveal-ids-for-wp-admin-25.php">Options Page</a> for options and information.
 Author: Oliver Schl&ouml;be
@@ -47,7 +47,7 @@ if ( !defined( 'WP_PLUGIN_DIR' ) )
 /**
  * Define the plugin version
  */
-define("RIDWPA_VERSION", "1.1.1");
+define("RIDWPA_VERSION", "1.1.2");
 
 /**
  * Define the plugin path slug
@@ -375,6 +375,18 @@ function ridwpa_user_js_header() {
 	}
 }
 
+/**
+ * Adds the comments 'ID' js file to the comments page's header
+ *
+ * @since 1.1.2
+ * @author scripts@schloebe.de
+ */
+function ridwpa_comments_js_header() {
+	if ( current_user_can('moderate_comments') ) {
+		add_action('admin_head', wp_enqueue_script( 'id-reader-comments', RIDWPA_PLUGINFULLURL . "js/id-reader-comments.js", array('jquery'), RIDWPA_VERSION ) );
+	}
+}
+
 switch( basename($_SERVER['SCRIPT_FILENAME']) ) {
 	case 'categories.php':
 		add_action('admin_print_scripts', 'ridwpa_cat_js_header');
@@ -384,6 +396,9 @@ switch( basename($_SERVER['SCRIPT_FILENAME']) ) {
 		break;
 	case 'users.php':
 		add_action('admin_print_scripts', 'ridwpa_user_js_header');
+		break;
+	case 'edit-comments.php':
+		add_action('admin_print_scripts', 'ridwpa_comments_js_header');
 		break;
 }
 
@@ -487,7 +502,7 @@ function ridwpa_activationNotice() {
 	</div>';
 }
 
-if( version_compare( $GLOBALS['wp_version'], '2.5', '>=' ) && get_option('ridwpa_reassigned_075_options') == '0' ) {
+if( version_compare( $GLOBALS['wp_version'], '2.4.999', '>' ) && get_option('ridwpa_reassigned_075_options') == '0' ) {
 	add_action('admin_notices', 'ridwpa_activationNotice');
 }
 
@@ -570,8 +585,8 @@ function ridwpa_add_optionpages() {
 }
 
 
-if( version_compare($GLOBALS['wp_version'], '2.5', '>=') ) {
-	/** 
+if( version_compare($GLOBALS['wp_version'], '2.4.999', '>') ) {
+	/**
 	 * This file holds all the author plugins functions
 	 */
 	require_once(dirname (__FILE__) . '/' . 'authorplugins.inc.php');
@@ -865,7 +880,7 @@ function enable_options(area, status) {
 			</div>
 			</div>
 			</form>
-		<?php if( version_compare($GLOBALS['wp_version'], '2.4', '>') ) { ?>
+		<?php if( version_compare($GLOBALS['wp_version'], '2.4.999', '>') ) { ?>
 		<div id="ridwpa_plugins_box" class="postbox if-js-open">
       	<h3>
         	<?php _e('More of my WordPress plugins', 'reveal-ids-for-wp-admin-25'); ?>
