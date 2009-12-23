@@ -16,7 +16,7 @@ What this plugin does is to reveal most removed entry IDs on admin pages, showin
 
 **Features:**
 
-* Following IDs can be revealed: Posts, Pages, Category, Links, Media, Users, Comments
+* Following IDs can be revealed: Posts, Pages, Categories, Links, Media, Users, Comments, Link categories
 * Each ID can be de-/activated seperately, plus you can **allow/permit user roles to see the IDs**
 
 **Included languages:**
@@ -43,6 +43,10 @@ None.
 1. Installation finished.
 
 == Changelog ==
+
+= 1.1.4 =
+* Using new hooks to add ID columns where javascript was used before (due to missing hooks) in WP 2.8 and above
+* Fixed an issue with capabilites
 
 = 1.1.3 =
 * Support for Fluency Admin Theme plugin
