@@ -3,7 +3,7 @@ Contributors: Alphawolf
 Donate link: http://www.schloebe.de/donate/
 Tags: reveal, id, wp-admin, hidden, category, post, page, media, links, capability, user, restore, comments
 Requires at least: 2.5
-Tested up to: 2.9
+Tested up to: 2.9.1
 Stable tag: trunk
 
 What this plugin does is to reveal most removed IDs on admin pages, as it was in versions prior to 2.5.
@@ -43,6 +43,9 @@ None.
 1. Installation finished.
 
 == Changelog ==
+
+= 1.1.5 =
+* Added IDs for tag management page
 
 = 1.1.4 =
 * Using new hooks to add ID columns where javascript was used before (due to missing hooks) in WP 2.8 and above
