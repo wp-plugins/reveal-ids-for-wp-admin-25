@@ -16,7 +16,7 @@ What this plugin does is to reveal most removed entry IDs on admin pages, showin
 
 **Features:**
 
-* Following IDs can be revealed: Posts, Pages, Categories, Links, Media, Users, Comments, Link categories
+* Following IDs can be revealed: Posts, Pages, Categories, Links, Media, Users, Comments, Link categories, Tags (WP 2.8 and above)
 * Each ID can be de-/activated seperately, plus you can **allow/permit user roles to see the IDs**
 
 **Included languages:**
