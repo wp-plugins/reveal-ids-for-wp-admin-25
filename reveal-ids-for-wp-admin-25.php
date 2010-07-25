@@ -1,13 +1,13 @@
 <?php 
 /*
 Plugin Name: Reveal IDs for WP Admin
-Version: 1.1.5
+Version: 1.1.6
 Plugin URI: http://www.schloebe.de/wordpress/reveal-ids-for-wp-admin-25-plugin/
 Description: <strong>WordPress 2.5+ only.</strong> Reveals hidden IDs in Admin interface that have been removed with WordPress 2.5 (formerly known as Entry IDs in Manage Posts/Pages View for WP 2.5). See <a href="options-general.php?page=reveal-ids-for-wp-admin-25/reveal-ids-for-wp-admin-25.php">Options Page</a> for options and information.
 Author: Oliver Schl&ouml;be
 Author URI: http://www.schloebe.de/
 
-Copyright 2008 Oliver Schlöbe (email : scripts@schloebe.de)
+Copyright 2008-2010 Oliver Schlöbe (email : scripts@schloebe.de)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -47,7 +47,7 @@ if ( !defined( 'WP_PLUGIN_DIR' ) )
 /**
  * Define the plugin version
  */
-define("RIDWPA_VERSION", "1.1.5");
+define("RIDWPA_VERSION", "1.1.6");
 
 /**
  * Define the plugin path slug
@@ -135,7 +135,7 @@ function ridwpa_filter_plugin_actions($links, $file){
 
 	if( !$this_plugin ) $this_plugin = plugin_basename(__FILE__);
 
-	if( $file == $this_plugin ){
+	if( $file == $this_plugin ) {
 		$settings_link = '<a href="options-general.php?page=reveal-ids-for-wp-admin-25/reveal-ids-for-wp-admin-25.php">' . __('Settings') . '</a>';
 		$links = array_merge( array($settings_link), $links); // before other links
 	}
@@ -368,7 +368,14 @@ function ridwpa_custom_column_tag_id_25($value, $column_name, $id) {
 	}
 }
 
-if( version_compare($GLOBALS['wp_version'], '2.7.999', '>') ) {
+if( version_compare($GLOBALS['wp_version'], '2.9.999', '>') ) {
+	add_action('manage_users_custom_column', 'ridwpa_custom_column_user_id_25', 15, 3);
+	add_filter('manage_users_columns', 'ridwpa_column_user_id_25', 15, 1);
+	add_action('manage_category_custom_column', 'ridwpa_custom_column_category_id_25', 15, 3);
+	add_filter('manage_edit-category_columns', 'ridwpa_column_category_id_25', 15, 1);
+	add_action('manage_post_tag_custom_column', 'ridwpa_custom_column_tag_id_25', 15, 3);
+	add_filter('manage_edit-post_tag_columns', 'ridwpa_column_tag_id_25', 15, 1);
+} elseif( version_compare($GLOBALS['wp_version'], '2.7.999', '>') ) {
 	add_action('manage_users_custom_column', 'ridwpa_custom_column_user_id_25', 15, 3);
 	add_filter('manage_users_columns', 'ridwpa_column_user_id_25', 15, 1);
 	add_action('manage_categories_custom_column', 'ridwpa_custom_column_category_id_25', 15, 3);
