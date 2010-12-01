@@ -29,6 +29,8 @@ What this plugin does is to reveal most removed entry IDs on admin pages, showin
 * Russian (ru_RU) (Thanks for contributing russian language goes to [Dimitry German](http://grugl.me))
 * Belorussian (by_BY) (Thanks for contributing belorussian language goes to [FatCow](http://www.fatcow.com))
 * Dutch (nl_NL) (Thanks for contributing dutch language goes to [wpwebshop.com](http://wpwebshop.com/premium-wordpress-plugins/))
+* European Portuguese (pt_PT) (Thanks for contributing european portuguese language goes to [PL Monteiro](http://thepatientcapacitor.com/))
+* Polish (pl_PL) (Thanks for contributing dutch language goes to Simivar)
 
 **Want update feeds, code documentation and more? Visit [extend.schloebe.de](http://extend.schloebe.de)**
 
@@ -44,6 +46,10 @@ None.
 1. Installation finished.
 
 == Changelog ==
+
+= 1.1.9 =
+* Added polish localization (Thanks to Simivar!)
+* Added european portuguese localization (Thanks to PL Monteiro!)
 
 = 1.1.8 =
 * Added dutch localization (Thanks to wpwebshop.com!)
