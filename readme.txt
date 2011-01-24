@@ -1,9 +1,9 @@
-=== Reveal IDs for WP Admin ===
+=== Reveal IDs ===
 Contributors: Alphawolf
 Donate link: http://www.schloebe.de/donate/
 Tags: reveal, id, wp-admin, hidden, category, post, page, media, links, capability, user, restore, comments
 Requires at least: 2.5
-Tested up to: 3.1
+Tested up to: 3.0.4
 Stable tag: trunk
 
 What this plugin does is to reveal most removed IDs on admin pages, as it was in versions prior to 2.5.
@@ -46,6 +46,9 @@ None.
 1. Installation finished.
 
 == Changelog ==
+
+= 1.2.0 =
+* FIXED: German localization wasn't loading
 
 = 1.1.9 =
 * Added polish localization (Thanks to Simivar!)
