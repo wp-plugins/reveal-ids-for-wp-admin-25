@@ -3,7 +3,7 @@ Contributors: Alphawolf
 Donate link: http://www.schloebe.de/donate/
 Tags: reveal, id, wp-admin, hidden, category, post, page, media, links, capability, user, restore, comments
 Requires at least: 2.5
-Tested up to: 3.0.4
+Tested up to: 3.1
 Stable tag: trunk
 
 What this plugin does is to reveal most removed IDs on admin pages, as it was in versions prior to 2.5.
@@ -31,6 +31,7 @@ What this plugin does is to reveal most removed entry IDs on admin pages, showin
 * Dutch (nl_NL) (Thanks for contributing dutch language goes to [wpwebshop.com](http://wpwebshop.com/premium-wordpress-plugins/))
 * European Portuguese (pt_PT) (Thanks for contributing european portuguese language goes to [PL Monteiro](http://thepatientcapacitor.com/))
 * Polish (pl_PL) (Thanks for contributing dutch language goes to Simivar)
+* Romanian (ro_RO) (Thanks for contributing romanian language goes to [Anunturi Jibo](http://www.jibo.ro))
 
 **Want update feeds, code documentation and more? Visit [extend.schloebe.de](http://extend.schloebe.de)**
 
@@ -46,6 +47,9 @@ None.
 1. Installation finished.
 
 == Changelog ==
+
+= 1.2.1 =
+* Added romanian localization (Thanks to Anunturi Jibo!)
 
 = 1.2.0 =
 * FIXED: German localization wasn't loading
