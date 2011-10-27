@@ -3,7 +3,7 @@ Contributors: Alphawolf
 Donate link: http://www.schloebe.de/donate/
 Tags: reveal, id, wp-admin, hidden, category, post, page, media, links, capability, user, restore, comments
 Requires at least: 2.5
-Tested up to: 3.1.2
+Tested up to: 3.3
 Stable tag: trunk
 
 What this plugin does is to reveal most removed IDs on admin pages, as it was in versions prior to 2.5.
@@ -33,6 +33,7 @@ What this plugin does is to reveal most removed entry IDs on admin pages, showin
 * Polish (pl_PL) (Thanks for contributing polish language goes to Simivar)
 * Romanian (ro_RO) (Thanks for contributing romanian language goes to [Anunturi Jibo](http://www.jibo.ro))
 * Georgian (ge_KA) (Thanks for contributing georgian language goes to [Online Casino Bluebook](http://www.onlinecasinobluebook.com/))
+* Swedish (sv_SE) (Thanks for contributing swedish language goes to [Tor-Bjorn Fjellner](http://fjellner.com/))
 
 **Want update feeds, code documentation and more? Visit [extend.schloebe.de](http://extend.schloebe.de)**
 
