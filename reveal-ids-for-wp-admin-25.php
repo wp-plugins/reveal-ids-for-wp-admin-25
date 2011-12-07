@@ -1,7 +1,7 @@
 <?php 
 /*
 Plugin Name: Reveal IDs
-Version: 1.2.2
+Version: 1.2.3
 Plugin URI: http://www.schloebe.de/wordpress/reveal-ids-for-wp-admin-25-plugin/
 Description: <strong>WordPress 2.5+ only.</strong> Reveals hidden IDs in Admin interface that have been removed with WordPress 2.5 (formerly known as Entry IDs in Manage Posts/Pages View for WP 2.5). See <a href="options-general.php?page=reveal-ids-for-wp-admin-25/reveal-ids-for-wp-admin-25.php">Options Page</a> for options and information.
 Author: Oliver Schl&ouml;be
@@ -47,7 +47,7 @@ if ( !defined( 'WP_PLUGIN_DIR' ) )
 /**
  * Define the plugin version
  */
-define("RIDWPA_VERSION", "1.2.2");
+define("RIDWPA_VERSION", "1.2.3");
 
 /**
  * Define the plugin path slug
@@ -297,9 +297,10 @@ function ridwpa_column_user_id_25( $defaults ) {
  * @param int
  */
 function ridwpa_custom_column_user_id_25($value, $column_name, $id) {
-	if( $column_name == 'ridwpa_user_id_25' ) {
-			return (int) $id;
-	}
+	if( $column_name == 'ridwpa_user_id_25' )
+		return (int) $id;
+	
+	return $value;
 }
 
 
@@ -330,9 +331,10 @@ function ridwpa_column_category_id_25( $defaults ) {
  * @param int
  */
 function ridwpa_custom_column_category_id_25($value, $column_name, $id) {
-	if( $column_name == 'ridwpa_category_id_25' ) {
-			return (int) $id;
-	}
+	if( $column_name == 'ridwpa_category_id_25' )
+		return (int) $id;
+	
+	return $value;
 }
 
 
@@ -363,9 +365,10 @@ function ridwpa_column_tag_id_25( $defaults ) {
  * @param int
  */
 function ridwpa_custom_column_tag_id_25($value, $column_name, $id) {
-	if( $column_name == 'ridwpa_tag_id_25' ) {
+	if( $column_name == 'ridwpa_tag_id_25' )
 			return (int) $id;
-	}
+	
+	return $value;
 }
 
 add_action('manage_users_custom_column', 'ridwpa_custom_column_user_id_25', 15, 3);

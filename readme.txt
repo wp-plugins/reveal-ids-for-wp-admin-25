@@ -50,6 +50,9 @@ None.
 
 == Changelog ==
 
+= 1.2.3 =
+* Fixed ID columns so that other plugins' custom columns won't be empty anymore
+
 = 1.2.2 =
 * Added georgian localization (Thanks to Kasia!)
 
