@@ -1,13 +1,13 @@
 <?php 
 /*
 Plugin Name: Reveal IDs
-Version: 1.2.3
+Version: 1.2.4
 Plugin URI: http://www.schloebe.de/wordpress/reveal-ids-for-wp-admin-25-plugin/
 Description: <strong>WordPress 2.5+ only.</strong> Reveals hidden IDs in Admin interface that have been removed with WordPress 2.5 (formerly known as Entry IDs in Manage Posts/Pages View for WP 2.5). See <a href="options-general.php?page=reveal-ids-for-wp-admin-25/reveal-ids-for-wp-admin-25.php">Options Page</a> for options and information.
 Author: Oliver Schl&ouml;be
 Author URI: http://www.schloebe.de/
 
-Copyright 2008-2011 Oliver Schlöbe (email : scripts@schloebe.de)
+Copyright 2008-2012 Oliver Schlöbe (email : scripts@schloebe.de)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -47,7 +47,7 @@ if ( !defined( 'WP_PLUGIN_DIR' ) )
 /**
  * Define the plugin version
  */
-define("RIDWPA_VERSION", "1.2.3");
+define("RIDWPA_VERSION", "1.2.4");
 
 /**
  * Define the plugin path slug
@@ -159,7 +159,7 @@ function ridwpa_column_pages_id_25($defaults) {
 
     if ( version_compare( $GLOBALS['wp_version'], '2.4.999', '>' ) ) {
     	if ( get_option("ridwpa_page_ids_enable") && current_user_can('Reveal IDs See Page IDs') ) {
-        	$defaults['ridwpa_page_id_25'] = '<abbr style="cursor:help;" title="' . __('Enhanced by Reveal IDs for WP Admin 2.5 Plugin', 'reveal-ids-for-wp-admin-25') . '">' . __('ID') . '</abbr>';
+        	$defaults['ridwpa_page_id_25'] = '<abbr style="cursor:help;" title="' . __('Enhanced by Reveal IDs Plugin', 'reveal-ids-for-wp-admin-25') . '">' . __('ID') . '</abbr>';
         }
         return $defaults;
     }
@@ -198,7 +198,7 @@ function ridwpa_column_post_id_25( $defaults ) {
 	
 	if ( version_compare( $GLOBALS['wp_version'], '2.5', '>=' ) ) {
 		if ( get_option("ridwpa_post_ids_enable") && current_user_can('Reveal IDs See Post IDs') ) {
-    		$defaults['ridwpa_post_id_25'] = '<abbr style="cursor:help;" title="' . __('Enhanced by Reveal IDs for WP Admin 2.5 Plugin', 'reveal-ids-for-wp-admin-25') . '">' . __('ID') . '</abbr>';
+    		$defaults['ridwpa_post_id_25'] = '<abbr style="cursor:help;" title="' . __('Enhanced by Reveal IDs Plugin', 'reveal-ids-for-wp-admin-25') . '">' . __('ID') . '</abbr>';
     	}
     	return $defaults;
     }
@@ -237,11 +237,11 @@ function ridwpa_column_link_id_25( $defaults ) {
 	
 	if( version_compare($GLOBALS['wp_version'], '2.6.999', '>=') ) {
 		if ( get_option("ridwpa_link_ids_enable") && current_user_can('Reveal IDs See Link IDs') ) {
- 			$defaults['ridwpa_link_id_25'] = '<abbr style="cursor:help;" title="' . __('Enhanced by Reveal IDs for WP Admin 2.5 Plugin', 'reveal-ids-for-wp-admin-25') . '">' . __('ID') . '</abbr>';
+ 			$defaults['ridwpa_link_id_25'] = '<abbr style="cursor:help;" title="' . __('Enhanced by Reveal IDs Plugin', 'reveal-ids-for-wp-admin-25') . '">' . __('ID') . '</abbr>';
  		}
     } else {
     	if ( get_option("ridwpa_link_ids_enable") && current_user_can('Reveal IDs See Link IDs') ) {
- 			$defaults['ridwpa_link_id_25'] = '<th><abbr style="cursor:help;" title="' . __('Enhanced by Reveal IDs for WP Admin 2.5 Plugin', 'reveal-ids-for-wp-admin-25') . '">' . __('ID') . '</abbr></th>';
+ 			$defaults['ridwpa_link_id_25'] = '<th><abbr style="cursor:help;" title="' . __('Enhanced by Reveal IDs Plugin', 'reveal-ids-for-wp-admin-25') . '">' . __('ID') . '</abbr></th>';
  		}
 	}
    	return $defaults;
@@ -282,7 +282,7 @@ if( version_compare($GLOBALS['wp_version'], '2.6.999', '>') ) {
  */
 function ridwpa_column_user_id_25( $defaults ) {
 	if ( get_option("ridwpa_user_ids_enable") && current_user_can('Reveal IDs See User IDs') ) {
-		$defaults['ridwpa_user_id_25'] = '<abbr style="cursor:help;" title="' . __('Enhanced by Reveal IDs for WP Admin 2.5 Plugin', 'reveal-ids-for-wp-admin-25') . '">' . __('ID') . '</abbr>';
+		$defaults['ridwpa_user_id_25'] = '<abbr style="cursor:help;" title="' . __('Enhanced by Reveal IDs Plugin', 'reveal-ids-for-wp-admin-25') . '">' . __('ID') . '</abbr>';
 	}
 	return $defaults;
 }
@@ -316,7 +316,7 @@ function ridwpa_custom_column_user_id_25($value, $column_name, $id) {
  */
 function ridwpa_column_category_id_25( $defaults ) {
 	if ( get_option("ridwpa_cat_ids_enable") && current_user_can('Reveal IDs See Category IDs') ) {
-		$defaults['ridwpa_category_id_25'] = '<abbr style="cursor:help;" title="' . __('Enhanced by Reveal IDs for WP Admin 2.5 Plugin', 'reveal-ids-for-wp-admin-25') . '">' . __('ID') . '</abbr>';
+		$defaults['ridwpa_category_id_25'] = '<abbr style="cursor:help;" title="' . __('Enhanced by Reveal IDs Plugin', 'reveal-ids-for-wp-admin-25') . '">' . __('ID') . '</abbr>';
 	}
 	return $defaults;
 }
@@ -350,7 +350,7 @@ function ridwpa_custom_column_category_id_25($value, $column_name, $id) {
  */
 function ridwpa_column_tag_id_25( $defaults ) {
 	if ( get_option("ridwpa_tag_ids_enable") && current_user_can('Reveal IDs See Tag IDs') ) {
-		$defaults['ridwpa_tag_id_25'] = '<abbr style="cursor:help;" title="' . __('Enhanced by Reveal IDs for WP Admin 2.5 Plugin', 'reveal-ids-for-wp-admin-25') . '">' . __('ID') . '</abbr>';
+		$defaults['ridwpa_tag_id_25'] = '<abbr style="cursor:help;" title="' . __('Enhanced by Reveal IDs Plugin', 'reveal-ids-for-wp-admin-25') . '">' . __('ID') . '</abbr>';
 	}
 	return $defaults;
 }
@@ -531,7 +531,7 @@ function ridwpa_column_media_id_25( $defaults ) {
 	
 	if ( version_compare( $GLOBALS['wp_version'], '2.5', '>=' ) ) {
 		if ( get_option("ridwpa_media_ids_enable") && current_user_can('Reveal IDs See Media IDs') ) {
-    		$defaults['ridwpa_media_id_25'] = '<abbr style="cursor:help;" title="' . __('Enhanced by Reveal IDs for WP Admin 2.5 Plugin', 'reveal-ids-for-wp-admin-25') . '">' . __('ID') . '</abbr>';
+    		$defaults['ridwpa_media_id_25'] = '<abbr style="cursor:help;" title="' . __('Enhanced by Reveal IDs Plugin', 'reveal-ids-for-wp-admin-25') . '">' . __('ID') . '</abbr>';
     	}
     	return $defaults;
     }
@@ -679,9 +679,9 @@ function ridwpa_add_option_menu() {
 		if ( version_compare( $GLOBALS['wp_version'], '2.6.999', '>' ) ) {
 			$menutitle = '<img src="' . ridwpa_get_resource_url('clipboard.gif') . '" alt="" />' . ' ';
 		}
-		$menutitle .= __('Reveal IDs for WP Admin', 'reveal-ids-for-wp-admin-25');
+		$menutitle .= __('Reveal IDs', 'reveal-ids-for-wp-admin-25');
  
-		add_submenu_page('options-general.php', __('Reveal IDs for WP Admin', 'reveal-ids-for-wp-admin-25'), $menutitle, 8, __FILE__, 'ridwpa_options_page');
+		add_submenu_page('options-general.php', __('Reveal IDs', 'reveal-ids-for-wp-admin-25'), $menutitle, 8, __FILE__, 'ridwpa_options_page');
 	}
 }
 
@@ -695,7 +695,7 @@ function ridwpa_add_option_menu() {
  * @see ridwpa_add_option_menu()
  */
 function ridwpa_add_optionpages() {
-	add_options_page(__('Reveal IDs Options', 'reveal-ids-for-wp-admin-25'), __('Reveal IDs for WP Admin', 'reveal-ids-for-wp-admin-25'), 8, __FILE__, 'ridwpa_options_page');
+	add_options_page(__('Reveal IDs Options', 'reveal-ids-for-wp-admin-25'), __('Reveal IDs', 'reveal-ids-for-wp-admin-25'), 8, __FILE__, 'ridwpa_options_page');
 }
 
 
@@ -848,14 +848,14 @@ function enable_options(area, status) {
 
 	<div class="wrap">
 		<h2>
-        <?php _e('Reveal IDs for WP Admin Options', 'reveal-ids-for-wp-admin-25'); ?>
+        <?php _e('Reveal IDs Options', 'reveal-ids-for-wp-admin-25'); ?>
       	</h2>
 		<br class="clear" />
       	<form name="ridwpa_form" id="ridwpa_form" action="" method="post">
       	<input type="hidden" name="action" value="edit" />
 			<div id="poststuff" class="ui-sortable">
 			<div id="ridwpa_ids_box" class="postbox if-js-open">
-			<h3><?php _e('Reveal IDs for WP Admin Options', 'reveal-ids-for-wp-admin-25'); ?></h3>
+			<h3><?php _e('Reveal IDs Options', 'reveal-ids-for-wp-admin-25'); ?></h3>
 			<table class="form-table <?php echo (!get_option('ridwpa_post_ids_enable')) ? 'ridwpa_table_disabled' : ''; ?>">
  			<tr>
  				<th scope="row" valign="top"><?php _e('Show Post IDs', 'reveal-ids-for-wp-admin-25'); ?></th>
