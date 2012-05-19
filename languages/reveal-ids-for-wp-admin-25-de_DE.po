@@ -215,17 +215,12 @@ msgstr "Es könnten Sie ebenfalls einige meiner weiteren Plugins interessieren: 
 msgid "Show other plugins by this author inline &raquo;"
 msgstr "Weitere Plugins dieses Autors zeigen &raquo;"
 
-#: reveal-ids-for-wp-admin-25.php:1054
-#@ reveal-ids-for-wp-admin-25
-msgid "More information at: <a href=\"http://extend.schloebe.de\" target=\"_blank\">http://extend.schloebe.de</a>"
-msgstr "Weitere Informationen: <a href=\"http://extend.schloebe.de\" target=\"_blank\">http://extend.schloebe.de</a>"
-
-#: reveal-ids-for-wp-admin-25.php:1063
+#: reveal-ids-for-wp-admin-25.php:1064
 #@ reveal-ids-for-wp-admin-25
 msgid "Help"
 msgstr "Hilfe"
 
-#: reveal-ids-for-wp-admin-25.php:1068
+#: reveal-ids-for-wp-admin-25.php:1069
 #@ reveal-ids-for-wp-admin-25
 msgid "If you are new to using this plugin or cant understand what all these settings do, please read the documentation at <a href=\"http://www.schloebe.de/wordpress/simple-yearly-archive-plugin/\" target=\"_blank\">http://www.schloebe.de/wordpress/reveal-ids-for-wp-admin-25-plugin/</a>"
 msgstr "Falls Sie dieses Plugin zum ersten Mal benutzen und nicht wissen, was all diese Optionen machen, schauen Sie bitte in die Dokumentation auf <a href=\"http://www.schloebe.de/wordpress/reveal-ids-for-wp-admin-25-plugin/\" target=\"_blank\">http://www.schloebe.de/wordpress/reveal-ids-for-wp-admin-25-plugin/</a>"
@@ -263,4 +258,9 @@ msgstr "Erweitert durch das Reveal IDs-Plugin"
 #@ reveal-ids-for-wp-admin-25
 msgid "Reveal IDs"
 msgstr "Reveal IDs"
+
+#: reveal-ids-for-wp-admin-25.php:1055
+#@ reveal-ids-for-wp-admin-25
+msgid "More plugins at: <a class=\"button rbutton\" href=\"http://www.schloebe.de/portfolio/\" target=\"_blank\">www.schloebe.de</a>"
+msgstr "Mehr Plugins auf: <a class=\"button rbutton\" href=\"http://www.schloebe.de/portfolio/\" target=\"_blank\">www.schloebe.de</a>"
 
