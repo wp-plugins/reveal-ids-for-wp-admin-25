@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Reveal IDs v1.2.6\n"
+"Project-Id-Version: Reveal IDs v1.3.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2012-09-15 16:38:50+0000\n"
+"PO-Revision-Date: 2012-11-28 20:44:11+0000\n"
 "Last-Translator: Oliver Schlöbe <webmaster@schloebe.de>\n"
 "Language-Team: Oliver Schlöbe <webmaster@schloebe.de>\n"
 "MIME-Version: 1.0\n"
@@ -39,207 +39,61 @@ msgstr ""
 msgid "Author"
 msgstr ""
 
-#: reveal-ids-for-wp-admin-25.php:75
-#@ default
-msgid "Settings"
-msgstr ""
-
-#: reveal-ids-for-wp-admin-25.php:98
-#: reveal-ids-for-wp-admin-25.php:137
-#: reveal-ids-for-wp-admin-25.php:176
-#: reveal-ids-for-wp-admin-25.php:180
 #: reveal-ids-for-wp-admin-25.php:221
-#: reveal-ids-for-wp-admin-25.php:255
-#: reveal-ids-for-wp-admin-25.php:289
-#: reveal-ids-for-wp-admin-25.php:393
 #@ default
 msgid "ID"
 msgstr "ID"
 
-#: reveal-ids-for-wp-admin-25.php:452
-#@ reveal-ids-for-wp-admin-25
-msgid "You still seem to have installed the former (less powerful) plugin release 'Entry IDs in Manage Posts/Pages View for WP 2.5' (manage-posts-pages-id-25.php). Please deactivate/remove it first in order to be able installing this plugin. <a href=\"javascript:history.back()\">&laquo; Back</a>"
-msgstr "Sie scheinen noch die ältere (weniger umfangreiche) Pluginversion 'Entry IDs in Manage Posts/Pages View for WP 2.5' (manage-posts-pages-id-25.php) zu nutzen. Bitte deinstallieren/löschen Sie erst das alte Plugin, um die neue Version installieren zu können. <a href=\"javascript:history.back()\">&laquo; Zurück</a>"
-
-#: reveal-ids-for-wp-admin-25.php:468
-#@ reveal-ids-for-wp-admin-25
-msgid "You just installed the \"Reveal IDs for WP Admin\" plugin. Please <a href=\"options-general.php?page=reveal-ids-for-wp-admin-25/reveal-ids-for-wp-admin-25.php\">save the options once</a> to assign the new capabilities to the system!"
-msgstr "Du hast gerade das \"Reveal IDs for WP Admin\"-Plugin installiert. Bitte <a href=\"options-general.php?page=reveal-ids-for-wp-admin-25/reveal-ids-for-wp-admin-25.php\">speichere nun die Optionen</a>, um die neuen Rechte ins System zu übernehmen!"
-
-#: reveal-ids-for-wp-admin-25.php:576
-#: reveal-ids-for-wp-admin-25.php:714
-#: reveal-ids-for-wp-admin-25.php:721
-#@ reveal-ids-for-wp-admin-25
-msgid "Reveal IDs Options"
-msgstr "Reveal IDs Optionen"
-
-#: reveal-ids-for-wp-admin-25.php:670
-#@ reveal-ids-for-wp-admin-25
-msgid "Settings saved."
-msgstr "Einstellungen gespeichert."
-
-#: reveal-ids-for-wp-admin-25.php:724
-#@ reveal-ids-for-wp-admin-25
-msgid "Show Post IDs"
-msgstr "Zeige Artikel IDs"
-
-#: reveal-ids-for-wp-admin-25.php:727
-#@ reveal-ids-for-wp-admin-25
-msgid "Reveal IDs for the posts management"
-msgstr "IDs aufdecken für die Artikelverwaltung"
-
-#: reveal-ids-for-wp-admin-25.php:729
-#@ reveal-ids-for-wp-admin-25
-msgid "(This will add a new column to the posts management displaying the IDs)"
-msgstr "(Dies wird eine neue Spalte zur Artikelverwaltung hinzufügen, die die IDs anzeigt)"
-
-#: reveal-ids-for-wp-admin-25.php:741
-#@ reveal-ids-for-wp-admin-25
-msgid "Show Page IDs"
-msgstr "Zeige Seiten IDs"
-
-#: reveal-ids-for-wp-admin-25.php:744
-#@ reveal-ids-for-wp-admin-25
-msgid "Reveal IDs for the pages management"
-msgstr "IDs aufdecken für die Seitenverwaltung"
-
-#: reveal-ids-for-wp-admin-25.php:746
-#@ reveal-ids-for-wp-admin-25
-msgid "(This will add a new column to the pages management displaying the IDs)"
-msgstr "(Dies wird eine neue Spalte zur Seitenverwaltung hinzufügen, die die IDs anzeigt)"
-
-#: reveal-ids-for-wp-admin-25.php:758
-#@ reveal-ids-for-wp-admin-25
-msgid "Show Link IDs"
-msgstr "Zeige Link IDs"
-
-#: reveal-ids-for-wp-admin-25.php:761
-#@ reveal-ids-for-wp-admin-25
-msgid "Reveal IDs for the links management"
-msgstr "IDs aufdecken für die Linkverwaltung"
-
-#: reveal-ids-for-wp-admin-25.php:763
-#@ reveal-ids-for-wp-admin-25
-msgid "(This will add a new column to the links management displaying the IDs)"
-msgstr "(Dies wird eine neue Spalte zur Linkverwaltung hinzufügen, die die IDs anzeigt)"
-
-#: reveal-ids-for-wp-admin-25.php:775
-#@ reveal-ids-for-wp-admin-25
-msgid "Show Category IDs"
-msgstr "Zeige Kategorie IDs"
-
-#: reveal-ids-for-wp-admin-25.php:778
-#@ reveal-ids-for-wp-admin-25
-msgid "Reveal IDs for the category management"
-msgstr "IDs aufdecken für die Kategorieverwaltung"
-
-#: reveal-ids-for-wp-admin-25.php:780
-#@ reveal-ids-for-wp-admin-25
-msgid "(This will add the ID after the category title)"
-msgstr "(Dies wird die ID nach dem Titel der Kategorie einfügen)"
-
-#: reveal-ids-for-wp-admin-25.php:792
-#@ reveal-ids-for-wp-admin-25
-msgid "Show Media IDs"
-msgstr "Zeige Mediathek IDs"
-
-#: reveal-ids-for-wp-admin-25.php:795
-#@ reveal-ids-for-wp-admin-25
-msgid "Reveal IDs for the media management"
-msgstr "IDs aufdecken für die Mediathek"
-
-#: reveal-ids-for-wp-admin-25.php:797
-#@ reveal-ids-for-wp-admin-25
-msgid "(This will add a new column to the media management displaying the IDs)"
-msgstr "(Dies wird eine neue Spalte zur Mediathek hinzufügen, die die IDs anzeigt)"
-
-#: reveal-ids-for-wp-admin-25.php:809
-#@ reveal-ids-for-wp-admin-25
-msgid "Show User IDs"
-msgstr "Zeige Benutzer IDs"
-
-#: reveal-ids-for-wp-admin-25.php:812
-#@ reveal-ids-for-wp-admin-25
-msgid "Reveal IDs for the user management"
-msgstr "IDs aufdecken für die Benutzerverwaltung"
-
-#: reveal-ids-for-wp-admin-25.php:814
-#@ reveal-ids-for-wp-admin-25
-msgid "(This will add the ID after the user name)"
-msgstr "(Dies wird die ID nach dem Benutzernamen einfügen)"
-
-#: reveal-ids-for-wp-admin-25.php:842
-#@ default
-msgid "Save Changes"
-msgstr "Änderungen speichern"
-
-#: reveal-ids-for-wp-admin-25.php:850
+#: reveal-ids-for-wp-admin-25.php:339
 #@ reveal-ids-for-wp-admin-25
 msgid "More of my WordPress plugins"
-msgstr "Weitere meiner WordPress Plugins "
+msgstr "Weitere meiner WordPress Plugins"
 
-#: reveal-ids-for-wp-admin-25.php:855
+#: reveal-ids-for-wp-admin-25.php:344
 #@ reveal-ids-for-wp-admin-25
 msgid "You may also be interested in some of my other plugins:"
-msgstr "Es könnten Sie ebenfalls einige meiner weiteren Plugins interessieren: "
+msgstr "Es könnten Sie ebenfalls einige meiner weiteren Plugins interessieren:"
 
-#: reveal-ids-for-wp-admin-25.php:856
+#: reveal-ids-for-wp-admin-25.php:345
 #@ reveal-ids-for-wp-admin-25
 msgid "Show other plugins by this author inline &raquo;"
 msgstr "Weitere Plugins dieses Autors zeigen &raquo;"
 
-#: reveal-ids-for-wp-admin-25.php:878
+#: reveal-ids-for-wp-admin-25.php:366
 #@ reveal-ids-for-wp-admin-25
 msgid "Help"
 msgstr "Hilfe"
 
-#: reveal-ids-for-wp-admin-25.php:883
+#: reveal-ids-for-wp-admin-25.php:376
 #@ reveal-ids-for-wp-admin-25
 msgid "If you are new to using this plugin or cant understand what all these settings do, please read the documentation at <a href=\"http://www.schloebe.de/wordpress/simple-yearly-archive-plugin/\" target=\"_blank\">http://www.schloebe.de/wordpress/reveal-ids-for-wp-admin-25-plugin/</a>"
 msgstr "Falls Sie dieses Plugin zum ersten Mal benutzen und nicht wissen, was all diese Optionen machen, schauen Sie bitte in die Dokumentation auf <a href=\"http://www.schloebe.de/wordpress/reveal-ids-for-wp-admin-25-plugin/\" target=\"_blank\">http://www.schloebe.de/wordpress/reveal-ids-for-wp-admin-25-plugin/</a>"
 
-#: reveal-ids-for-wp-admin-25.php:826
-#@ reveal-ids-for-wp-admin-25
-msgid "Show Tag IDs"
-msgstr "Zeige Tag IDs"
-
-#: reveal-ids-for-wp-admin-25.php:829
-#@ reveal-ids-for-wp-admin-25
-msgid "Reveal IDs for the tag management"
-msgstr "IDs aufdecken für die Schlagwortverwaltung  "
-
-#: reveal-ids-for-wp-admin-25.php:831
-#@ reveal-ids-for-wp-admin-25
-msgid "(This will add a new column to the tag management displaying the IDs)"
-msgstr "(Dies wird eine neue Spalte zur Schlagwortverwaltung hinzufügen, die die IDs anzeigt)"
-
-#: reveal-ids-for-wp-admin-25.php:98
-#: reveal-ids-for-wp-admin-25.php:137
-#: reveal-ids-for-wp-admin-25.php:176
-#: reveal-ids-for-wp-admin-25.php:180
 #: reveal-ids-for-wp-admin-25.php:221
-#: reveal-ids-for-wp-admin-25.php:255
-#: reveal-ids-for-wp-admin-25.php:289
-#: reveal-ids-for-wp-admin-25.php:393
 #@ reveal-ids-for-wp-admin-25
 msgid "Enhanced by Reveal IDs Plugin"
 msgstr "Erweitert durch das Reveal IDs-Plugin"
 
-#: reveal-ids-for-wp-admin-25.php:560
-#: reveal-ids-for-wp-admin-25.php:562
-#: reveal-ids-for-wp-admin-25.php:576
+#: reveal-ids-for-wp-admin-25.php:315
+#: reveal-ids-for-wp-admin-25.php:317
+#: reveal-ids-for-wp-admin-25.php:333
 #@ reveal-ids-for-wp-admin-25
 msgid "Reveal IDs"
 msgstr "Reveal IDs"
 
-#: reveal-ids-for-wp-admin-25.php:869
+#: reveal-ids-for-wp-admin-25.php:358
 #@ reveal-ids-for-wp-admin-25
 msgid "More plugins at: <a class=\"button rbutton\" href=\"http://www.schloebe.de/portfolio/\" target=\"_blank\">www.schloebe.de</a>"
 msgstr "Mehr Plugins auf: <a class=\"button rbutton\" href=\"http://www.schloebe.de/portfolio/\" target=\"_blank\">www.schloebe.de</a>"
 
-#: reveal-ids-for-wp-admin-25.php:498
+#: reveal-ids-for-wp-admin-25.php:371
+#@ reveal-ids-for-wp-admin-25
+msgid "All options to enable/disable the display of IDs have been removed in version 1.3.0! If you would like to hide the ID column on a specific panel, just remove it in the options panel."
+msgstr "Alle Optionen, um die ID-Anzeige zu de-/aktivieren, wurden in Version 1.3.0 entfernt! Wenn Sie die ID-Spalte ausblenden m&ouml;chten, tun Sie dies über das Options-Menü oben rechts auf jeder Seite."
+
+#: reveal-ids-for-wp-admin-25.php:411
 #, php-format
 #@ reveal-ids-for-wp-admin-25
-msgid "<strong>Reveal IDs</strong> 1.2.6 and above requires at least WordPress 2.9! If you're still using a WP version prior to 2.9, please <a href='%s'>use Reveal IDs version 1.2.5</a>! Consider updating to the latest WP version for your own safety!"
-msgstr "<strong>Reveal IDs</strong> in der Version 1.2.6 benötigt mindestens WordPress 2.9! Wenn Sie WordPress älter als Version 2.9 nutzen, <a href='%s'>verwenden Sie bitte Reveal IDs in der Version 1.2.5!</a> Updaten Sie auf die aktuellste WP-Version zu Ihrer eigenen Sicherheit!"
+msgid "<strong>Reveal IDs</strong> 1.3.0 and above require at least WordPress 3.0! If you're still using a WP version prior to 3.0, please <a href='%s'>use Reveal IDs version 1.2.7</a>! Consider updating to the latest WP version for your own safety!"
+msgstr "<strong>Reveal IDs</strong> in der Version 1.3.0 und h&ouml;her benötigt mindestens WordPress 3.0! Wenn Sie WordPress älter als Version 3.0 nutzen, <a href='%s'>verwenden Sie bitte Reveal IDs in der Version 1.2.7!</a> Updaten Sie auf die aktuellste WP-Version zu Ihrer eigenen Sicherheit!"
 
