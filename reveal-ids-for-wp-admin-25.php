@@ -1,7 +1,7 @@
 <?php 
 /*
 Plugin Name: Reveal IDs
-Version: 1.4.0
+Version: 1.4.1
 Plugin URI: http://www.schloebe.de/wordpress/reveal-ids-for-wp-admin-25-plugin/
 Description: Reveals hidden IDs in Admin interface that have been removed with WordPress 2.5 (formerly known as Entry IDs in Manage Posts/Pages View for WP 2.5). See <a href="options-general.php?page=reveal-ids-for-wp-admin-25/reveal-ids-for-wp-admin-25.php">options page</a> for information.
 Author: Oliver Schl&ouml;be
@@ -35,7 +35,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 /**
  * Define the plugin version
  */
-define("RIDWPA_VERSION", "1.4.0");
+define("RIDWPA_VERSION", "1.4.1");
 
 /**
  * Define the plugin path slug
@@ -213,7 +213,11 @@ class RevealIDsForWPAdmin {
 	function add_css() {
 		echo "\n" . '<style type="text/css">
 	table.widefat th.column-ridwpaid {
-		width: 50px;
+		width: 70px;
+	}
+	
+	table.widefat td.column-ridwpaid {
+		word-wrap: normal;
 	}
 	</style>' . "\n";
 	}

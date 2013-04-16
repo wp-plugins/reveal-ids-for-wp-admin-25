@@ -54,6 +54,9 @@ None.
 
 == Changelog ==
 
+= 1.4.1 =
+* Increased width and added word-wrap for ID columns (for long IDs)
+
 = 1.4.0 =
 * Sortable columns for WP 3.1 or higher
 
