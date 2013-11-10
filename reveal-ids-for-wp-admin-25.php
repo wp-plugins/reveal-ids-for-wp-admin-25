@@ -1,13 +1,15 @@
 <?php 
 /*
 Plugin Name: Reveal IDs
-Version: 1.4.1
+Version: 1.4.5
 Plugin URI: http://www.schloebe.de/wordpress/reveal-ids-for-wp-admin-25-plugin/
 Description: Reveals hidden IDs in Admin interface that have been removed with WordPress 2.5 (formerly known as Entry IDs in Manage Posts/Pages View for WP 2.5). See <a href="options-general.php?page=reveal-ids-for-wp-admin-25/reveal-ids-for-wp-admin-25.php">options page</a> for information.
 Author: Oliver Schl&ouml;be
 Author URI: http://www.schloebe.de/
+Text Domain: reveal-ids-for-wp-admin-25
+Domain Path: /languages
 
-Copyright 2008-2012 Oliver Schlöbe (email : scripts@schloebe.de)
+Copyright 2008-2013 Oliver Schlöbe (email : scripts@schloebe.de)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -35,7 +37,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 /**
  * Define the plugin version
  */
-define("RIDWPA_VERSION", "1.4.1");
+define("RIDWPA_VERSION", "1.4.5");
 
 /**
  * Define the plugin path slug
@@ -73,20 +75,6 @@ class RevealIDsForWPAdmin {
  	* The RevealIDsForWPAdmin class constructor
  	* initializing required stuff for the plugin
  	* 
-	* PHP 4 Compatible Constructor
- 	*
- 	* @since 		1.3.0
- 	* @author 		scripts@schloebe.de
- 	*/
-	function RevealIDsForWPAdmin() {
-		$this->__construct();
-	}
-	
-	
-	/**
- 	* The RevealIDsForWPAdmin class constructor
- 	* initializing required stuff for the plugin
- 	* 
 	* PHP 5 Constructor
  	*
  	* @since 		1.3.0
@@ -102,7 +90,7 @@ class RevealIDsForWPAdmin {
 		
 		register_activation_hook(__FILE__, array(&$this, 'on_activate'));
 		
-		add_action('admin_init', array(&$this, 'load_textdomain'));
+		add_action('plugins_loaded', array(&$this, 'load_textdomain'));
 		add_action('admin_init', array(&$this, 'init'));
 		
 		add_action('admin_head', array(&$this, 'add_css'));
@@ -142,6 +130,22 @@ class RevealIDsForWPAdmin {
 			}
 		}
 	}
+	
+	
+	
+	/**
+ 	* The RevealIDsForWPAdmin class constructor
+ 	* initializing required stuff for the plugin
+ 	* 
+	* PHP 4 Compatible Constructor
+ 	*
+ 	* @since 		1.3.0
+ 	* @author 		scripts@schloebe.de
+ 	*/
+	function RevealIDsForWPAdmin() {
+		$this->__construct();
+	}
+	
 	
 	
 	/**
@@ -279,7 +283,7 @@ class RevealIDsForWPAdmin {
  	*/
 	function load_textdomain() {
 		if($this->textdomain_loaded) return;
-		load_plugin_textdomain('reveal-ids-for-wp-admin-25', false, dirname(plugin_basename(__FILE__)) . '/languages');
+		load_plugin_textdomain('reveal-ids-for-wp-admin-25', false, dirname(plugin_basename(__FILE__)) . '/languages/');
 		$this->textdomain_loaded = true;
 	}
 	
